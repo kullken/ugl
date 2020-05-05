@@ -1,10 +1,10 @@
 #pragma once
 
-#include "math/vector.h"
-#include "math/matrix.h"
+#include "geometry_cpp/math/vector.h"
+#include "geometry_cpp/math/matrix.h"
 
-#include "trajectory/linear_trajectory.h"
-#include "trajectory/angular_trajectory.h"
+#include "geometry_cpp/trajectory/linear_trajectory.h"
+#include "geometry_cpp/trajectory/angular_trajectory.h"
 
 namespace geometry::trajectory
 {

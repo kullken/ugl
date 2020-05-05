@@ -4,10 +4,11 @@
 #include <utility>
 #include <algorithm>
 
-#include "math/vector.h"
-#include "math/quaternion.h"
-#include "math/slerp.h"
-#include "lie_group/utility.h"
+#include "geometry_cpp/math/vector.h"
+#include "geometry_cpp/math/quaternion.h"
+#include "geometry_cpp/math/slerp.h"
+
+#include "geometry_cpp/lie_group/utility.h"
 
 namespace geometry::trajectory
 {

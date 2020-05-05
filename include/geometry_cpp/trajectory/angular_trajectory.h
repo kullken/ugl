@@ -2,10 +2,10 @@
 
 #include <vector>
 
-#include "math/vector.h"
-#include "math/matrix.h"
+#include "geometry_cpp/math/vector.h"
+#include "geometry_cpp/math/matrix.h"
 
-#include "trajectory/slerp_segment.h"
+#include "geometry_cpp/trajectory/slerp_segment.h"
 
 namespace geometry::trajectory
 {

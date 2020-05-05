@@ -4,7 +4,7 @@
 
 #include <unsupported/Eigen/MatrixFunctions>
 
-#include "math/quaternion.h"
+#include "geometry_cpp/math/quaternion.h"
 
 namespace geometry::math
 {

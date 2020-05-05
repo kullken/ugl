@@ -2,9 +2,9 @@
 
 #include <vector>
 
-#include "math/vector.h"
+#include "geometry_cpp/math/vector.h"
 
-#include "trajectory/bezier.h"
+#include "geometry_cpp/trajectory/bezier.h"
 
 namespace geometry::trajectory
 {
