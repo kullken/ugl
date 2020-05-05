@@ -88,6 +88,7 @@ add_library(GeometryTrajectory)
 
 target_sources(GeometryTrajectory
   PRIVATE
+    src/trajectory/trajectory.cpp
     src/trajectory/linear_trajectory.cpp
     src/trajectory/angular_trajectory.cpp
 )
