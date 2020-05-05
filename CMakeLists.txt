@@ -58,7 +58,7 @@ add_library(GeometryMath)
 
 target_sources(GeometryMath
   PRIVATE
-    src/math/types.cpp
+    src/math/quaternion.cpp
 )
 
 target_include_directories(GeometryMath
