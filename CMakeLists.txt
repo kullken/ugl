@@ -54,11 +54,8 @@ include_directories(
 ## Library: math ##
 ###################
 
-add_library(GeometryMath)
-
-target_sources(GeometryMath
-  PRIVATE
-    src/math/quaternion.cpp
+add_library(GeometryMath
+  src/math/quaternion.cpp
 )
 
 target_include_directories(GeometryMath
@@ -84,11 +81,8 @@ set_target_properties(GeometryMath
 ## Library: lie_group ##
 ########################
 
-add_library(GeometryLieGroup)
-
-target_sources(GeometryLieGroup
-  PRIVATE
-    src/lie_group/utility.cpp
+add_library(GeometryLieGroup
+  src/lie_group/utility.cpp
 )
 
 target_include_directories(GeometryLieGroup
@@ -114,13 +108,10 @@ set_target_properties(GeometryLieGroup
 ## Library: trajectory ##
 #########################
 
-add_library(GeometryTrajectory)
-
-target_sources(GeometryTrajectory
-  PRIVATE
-    src/trajectory/trajectory.cpp
-    src/trajectory/linear_trajectory.cpp
-    src/trajectory/angular_trajectory.cpp
+add_library(GeometryTrajectory
+  src/trajectory/trajectory.cpp
+  src/trajectory/linear_trajectory.cpp
+  src/trajectory/angular_trajectory.cpp
 )
 
 target_include_directories(GeometryTrajectory
