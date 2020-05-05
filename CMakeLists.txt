@@ -133,6 +133,7 @@ target_include_directories(GeometryTrajectory
 target_link_libraries(GeometryTrajectory
   PUBLIC
     GeometryMath
+    GeometryLieGroup
 )
 
 set_target_properties(GeometryTrajectory
