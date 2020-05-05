@@ -1,7 +1,4 @@
-#ifndef _GEOMETRY_LIE_GROUP_CORE_H
-#define _GEOMETRY_LIE_GROUP_CORE_H
-
-#include "math/types.h"
+#pragma once
 
 namespace geometry::lie
 {
@@ -15,5 +12,3 @@ Type identity()
 }
 
 }
-
-#endif
