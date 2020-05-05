@@ -80,6 +80,36 @@ set_target_properties(GeometryMath
     CMAKE_CXX_EXTENSIONS OFF
 )
 
+########################
+## Library: lie_group ##
+########################
+
+add_library(GeometryLieGroup)
+
+target_sources(GeometryLieGroup
+  PRIVATE
+    src/lie_group/utility.cpp
+)
+
+target_include_directories(GeometryLieGroup
+  PUBLIC
+    include
+  PRIVATE
+    include/geometry_cpp
+)
+
+target_link_libraries(GeometryLieGroup
+  PUBLIC
+    GeometryMath
+)
+
+set_target_properties(GeometryLieGroup
+  PROPERTIES
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED ON
+    CMAKE_CXX_EXTENSIONS OFF
+)
+
 #########################
 ## Library: trajectory ##
 #########################
@@ -106,36 +136,6 @@ target_link_libraries(GeometryTrajectory
 )
 
 set_target_properties(GeometryTrajectory
-  PROPERTIES
-    CXX_STANDARD 17
-    CXX_STANDARD_REQUIRED ON
-    CMAKE_CXX_EXTENSIONS OFF
-)
-
-########################
-## Library: lie_group ##
-########################
-
-add_library(GeometryLieGroup)
-
-target_sources(GeometryLieGroup
-  PRIVATE
-    src/lie_group/utility.cpp
-)
-
-target_include_directories(GeometryLieGroup
-  PUBLIC
-    include
-  PRIVATE
-    include/geometry_cpp
-)
-
-target_link_libraries(GeometryLieGroup
-  PUBLIC
-    GeometryMath
-)
-
-set_target_properties(GeometryLieGroup
   PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
