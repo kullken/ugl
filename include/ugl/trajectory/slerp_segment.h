@@ -4,13 +4,13 @@
 #include <utility>
 #include <algorithm>
 
-#include "geometry_cpp/math/vector.h"
-#include "geometry_cpp/math/quaternion.h"
-#include "geometry_cpp/math/slerp.h"
+#include "ugl/math/vector.h"
+#include "ugl/math/quaternion.h"
+#include "ugl/math/slerp.h"
 
-#include "geometry_cpp/lie_group/utility.h"
+#include "ugl/lie_group/utility.h"
 
-namespace geometry::trajectory
+namespace ugl::trajectory
 {
 
 class SlerpSegment

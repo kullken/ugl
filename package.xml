@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>geometry_cpp</name>
+  <name>ugl</name>
   <version>0.0.0</version>
-  <description>The geometry_cpp package</description>
+  <description>The ugl package</description>
 
   <license>BSD</license>
 

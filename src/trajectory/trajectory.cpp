@@ -1,6 +1,6 @@
 #include "trajectory/trajectory.h"
 
-namespace geometry::trajectory
+namespace ugl::trajectory
 {
 
 

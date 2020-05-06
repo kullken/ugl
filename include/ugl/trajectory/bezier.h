@@ -5,7 +5,7 @@
 #include <utility>
 #include <algorithm>
 
-namespace geometry::trajectory
+namespace ugl::trajectory
 {
 
 // TODO: Add (partial-)constexpr support.

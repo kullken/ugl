@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10.2)
-project(geometry_cpp LANGUAGES CXX)
+project(ugl LANGUAGES CXX)
 
 find_package(catkin REQUIRED 
   COMPONENTS
@@ -38,9 +38,9 @@ catkin_package(
     include
     ${EIGEN3_INCLUDE_DIRS}
   LIBRARIES
-    GeometryMath
-    GeometryTrajectory
-    GeometryLieGroup
+    ugl_math
+    ugl_lie_group
+    ugl_trajectory
 #  CATKIN_DEPENDS ...
   DEPENDS Eigen3
 )
@@ -54,23 +54,23 @@ include_directories(
 ## Library: math ##
 ###################
 
-add_library(GeometryMath
+add_library(ugl_math
   src/math/quaternion.cpp
 )
 
-target_include_directories(GeometryMath
+target_include_directories(ugl_math
   PUBLIC
     include
   PRIVATE
-    include/geometry_cpp
+    include/ugl
 )
 
-target_link_libraries(GeometryMath
+target_link_libraries(ugl_math
   PUBLIC
     Eigen3_INTERFACE
 )
 
-set_target_properties(GeometryMath
+set_target_properties(ugl_math
   PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
@@ -81,23 +81,23 @@ set_target_properties(GeometryMath
 ## Library: lie_group ##
 ########################
 
-add_library(GeometryLieGroup
+add_library(ugl_lie_group
   src/lie_group/utility.cpp
 )
 
-target_include_directories(GeometryLieGroup
+target_include_directories(ugl_lie_group
   PUBLIC
     include
   PRIVATE
-    include/geometry_cpp
+    include/ugl
 )
 
-target_link_libraries(GeometryLieGroup
+target_link_libraries(ugl_lie_group
   PUBLIC
-    GeometryMath
+    ugl_math
 )
 
-set_target_properties(GeometryLieGroup
+set_target_properties(ugl_lie_group
   PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
@@ -108,26 +108,26 @@ set_target_properties(GeometryLieGroup
 ## Library: trajectory ##
 #########################
 
-add_library(GeometryTrajectory
+add_library(ugl_trajectory
   src/trajectory/trajectory.cpp
   src/trajectory/linear_trajectory.cpp
   src/trajectory/angular_trajectory.cpp
 )
 
-target_include_directories(GeometryTrajectory
+target_include_directories(ugl_trajectory
   PUBLIC
     include
   PRIVATE
-    include/geometry_cpp
+    include/ugl
 )
 
-target_link_libraries(GeometryTrajectory
+target_link_libraries(ugl_trajectory
   PUBLIC
-    GeometryMath
-    GeometryLieGroup
+    ugl_math
+    ugl_lie_group
 )
 
-set_target_properties(GeometryTrajectory
+set_target_properties(ugl_trajectory
   PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
@@ -150,7 +150,7 @@ list(APPEND CMAKE_CXX_FLAGS ${WARNING_FLAGS})
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 
 # Mark libraries for installation
-install(TARGETS GeometryMath GeometryTrajectory GeometryLieGroup
+install(TARGETS ugl_math ugl_trajectory ugl_lie_group
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}

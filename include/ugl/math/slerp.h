@@ -4,9 +4,9 @@
 
 #include <unsupported/Eigen/MatrixFunctions>
 
-#include "geometry_cpp/math/quaternion.h"
+#include "ugl/math/quaternion.h"
 
-namespace geometry::math
+namespace ugl::math
 {
 
 /// Calculates the spherical linear interpolation between two quaternions at time t.

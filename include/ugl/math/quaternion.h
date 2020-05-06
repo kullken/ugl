@@ -3,7 +3,7 @@
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 
-namespace geometry::math
+namespace ugl::math
 {
 
 using Quaternion = Eigen::Quaternion<double>;

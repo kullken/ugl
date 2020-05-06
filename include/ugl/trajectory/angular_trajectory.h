@@ -2,12 +2,12 @@
 
 #include <vector>
 
-#include "geometry_cpp/math/vector.h"
-#include "geometry_cpp/math/matrix.h"
+#include "ugl/math/vector.h"
+#include "ugl/math/matrix.h"
 
-#include "geometry_cpp/trajectory/slerp_segment.h"
+#include "ugl/trajectory/slerp_segment.h"
 
-namespace geometry::trajectory
+namespace ugl::trajectory
 {
 
 class AngularTrajectory

@@ -6,7 +6,7 @@
 
 #include "math/vector.h"
 
-namespace geometry::trajectory
+namespace ugl::trajectory
 {
 
 LinearTrajectory::LinearTrajectory(std::vector<Segment> segments)

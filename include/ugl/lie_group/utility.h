@@ -1,6 +1,6 @@
 #pragma once
 
-namespace geometry::lie
+namespace ugl::lie
 {
 
 /// Get identity element of Type. 

@@ -2,11 +2,11 @@
 
 #include <vector>
 
-#include "geometry_cpp/math/vector.h"
+#include "ugl/math/vector.h"
 
-#include "geometry_cpp/trajectory/bezier.h"
+#include "ugl/trajectory/bezier.h"
 
-namespace geometry::trajectory
+namespace ugl::trajectory
 {
 
 class LinearTrajectory

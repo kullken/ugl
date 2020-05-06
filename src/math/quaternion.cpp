@@ -5,7 +5,7 @@
 
 #include "math/vector.h"
 
-namespace geometry::math
+namespace ugl::math
 {
 
 UnitQuaternion exp(const Quaternion& q)

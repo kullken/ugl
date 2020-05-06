@@ -7,7 +7,7 @@
 #include "math/vector.h"
 #include "math/matrix.h"
 
-namespace geometry::trajectory
+namespace ugl::trajectory
 {
 
 AngularTrajectory::AngularTrajectory(std::vector<Segment> segments)
