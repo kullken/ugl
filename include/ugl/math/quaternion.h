@@ -16,3 +16,12 @@ UnitQuaternion exp(const Quaternion& q);
 Quaternion log(const UnitQuaternion& q);
 
 }
+
+// Expose basic types in the ugl namespace.
+namespace ugl
+{
+
+using Quaternion = math::Quaternion;
+using UnitQuaternion = math::UnitQuaternion;
+
+}
