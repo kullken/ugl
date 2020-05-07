@@ -55,6 +55,7 @@ include_directories(
 ###################
 
 add_library(ugl_math
+  src/math/matrix.cpp
   src/math/quaternion.cpp
 )
 
