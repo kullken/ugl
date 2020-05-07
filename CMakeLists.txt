@@ -84,6 +84,7 @@ set_target_properties(ugl_math
 
 add_library(ugl_lie_group
   src/lie_group/utility.cpp
+  src/lie_group/mappings.cpp
 )
 
 target_include_directories(ugl_lie_group
