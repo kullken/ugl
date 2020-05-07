@@ -17,7 +17,7 @@ LinearTrajectory::LinearTrajectory(std::vector<Segment> segments)
         segment.time_offset = m_duration;
         m_duration += segment.duration();
     }
-    // TODO: Assert that all segments are connected continously up to the x(?):th derivative.
+    // TODO?: Assert that all segments are connected continously up to the x(?):th derivative.
 }
 
 math::Vector3 LinearTrajectory::get_position(double t) const

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cassert>
 #include <cmath>
 #include <utility>
 #include <algorithm>
@@ -26,14 +27,14 @@ public:
         , q0_(start)
         , q1_(end)
     {
-        // TODO: Assert: duration_ > 0
+        assert(("Duration must be positive.", duration > 0));
     }
 
     SlerpSegment(double duration, math::UnitQuaternion end)
         : duration_(duration)
         , q1_(end)
     {
-        // TODO: Assert: duration_ > 0
+        assert(("Duration must be positive.", duration > 0));
     }
 
     SlerpSegment(math::UnitQuaternion start, math::UnitQuaternion end)

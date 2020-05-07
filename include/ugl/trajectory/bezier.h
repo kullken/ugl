@@ -1,7 +1,8 @@
 #pragma once
 
-#include <array>
+#include <cassert>
 #include <cmath>
+#include <array>
 #include <utility>
 #include <algorithm>
 
@@ -42,7 +43,7 @@ public:
         : duration_(duration)
         , points_(points)
     {
-        // TODO: Assert: duration_ > 0
+        assert(("Duration must be positive.", duration > 0));
     }
 
     double duration() const { return duration_; }
@@ -71,7 +72,7 @@ public:
 private:
     PointType calc_value(double t) const
     {
-        // TODO: Use De Casteljau's algorithm for better numerical stability at higher degrees?
+        // TODO?: Use De Casteljau's algorithm for better numerical stability at higher degrees?
         PointType result = PointType::Zero();
         for (const auto& coeff : calc_coeffs())
         {
