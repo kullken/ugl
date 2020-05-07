@@ -14,6 +14,7 @@ using Vector3 = Vector<3>;
 }
 
 // Expose basic types in the ugl namespace.
+
 namespace ugl
 {
 

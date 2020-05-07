@@ -18,6 +18,7 @@ Quaternion log(const UnitQuaternion& q);
 }
 
 // Expose basic types in the ugl namespace.
+
 namespace ugl
 {
 
