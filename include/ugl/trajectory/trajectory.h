@@ -18,6 +18,8 @@ private:
 public:
     Trajectory() = default;
 
+    double duration() const { return std::min(m_linear_trajectory.duration(), m_angular_trajectory.duration()); }
+
     math::Vector3 get_position(double t) const;
     math::Vector3 get_velocity(double t) const;
     math::Vector3 get_acceleration(double t) const;

@@ -25,6 +25,8 @@ public:
     LinearTrajectory() = default;
     LinearTrajectory(std::vector<Segment> segments);
 
+    double duration() const { return m_duration; }
+
     math::Vector3 get_position(double t) const;
     math::Vector3 get_velocity(double t) const;
     math::Vector3 get_acceleration(double t) const;

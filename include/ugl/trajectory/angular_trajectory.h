@@ -26,6 +26,8 @@ public:
     AngularTrajectory() = default;
     AngularTrajectory(std::vector<Segment> segments);
 
+    double duration() const { return m_duration; }
+
     math::Rotation get_rotation(double t) const;
     math::Vector3 get_angular_velocity(double t) const;
 
