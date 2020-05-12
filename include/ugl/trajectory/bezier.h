@@ -105,4 +105,19 @@ private:
 template<typename PointType, std::size_t degree>
 std::pair<Bezier<PointType, degree>, Bezier<PointType, degree>> split(Bezier<PointType, degree> bezier, double t);
 
+/// Creates a Bézier curve from a duration and position, velocity and acceleration at start and end.
+template<typename PointType>
+Bezier<PointType, 5> createPenticBezier(double duration, PointType pos0, PointType vel0, PointType acc0, PointType pos1, PointType vel1, PointType acc1)
+{
+    const PointType p0 = pos0;
+    const PointType p1 = duration/5 * vel0 + p0;
+    const PointType p2 = duration*duration/20 * acc0 + 2*p1 - p0;
+
+    const PointType p5 = pos1;
+    const PointType p4 = -duration/5 * vel1 + p5;
+    const PointType p3 = duration*duration/20 * acc1 + 2*p4 - p5;
+
+    return Bezier{duration, {p0, p1, p2, p3, p4, p5}};
+}
+
 }
