@@ -1,4 +1,4 @@
-#include "trajectory/linear_trajectory.h"
+#include "ugl/trajectory/bezier_sequence.h"
 
 #include <vector>
 #include <cassert>
@@ -9,40 +9,40 @@
 namespace ugl::trajectory
 {
 
-LinearTrajectory::LinearTrajectory(std::vector<Segment> segments)
-    : m_segments(segments)
+BezierSequence::BezierSequence(std::vector<Segment> segments)
+    : segments_(segments)
 {
-    for (auto& segment : m_segments)
+    for (auto& segment : segments_)
     {
-        segment.time_offset = m_duration;
-        m_duration += segment.duration();
+        segment.time_offset = duration_;
+        duration_ += segment.duration();
     }
     // TODO?: Assert that all segments are connected continously up to the x(?):th derivative.
 }
 
-math::Vector3 LinearTrajectory::get_position(double t) const
+math::Vector3 BezierSequence::pos(double t) const
 {
     const Segment& segment = get_segment_at(t);
     return segment.pos(t - segment.time_offset);
 }
 
-math::Vector3 LinearTrajectory::get_velocity(double t) const
+math::Vector3 BezierSequence::vel(double t) const
 {
     const Segment& segment = get_segment_at(t);
     return segment.vel(t - segment.time_offset);
 }
 
-math::Vector3 LinearTrajectory::get_acceleration(double t) const
+math::Vector3 BezierSequence::acc(double t) const
 {
     const Segment& segment = get_segment_at(t);
     return segment.acc(t - segment.time_offset);
 }
 
-const LinearTrajectory::Segment& LinearTrajectory::get_segment_at(double t) const
+const BezierSequence::Segment& BezierSequence::get_segment_at(double t) const
 {
-    assert(("", 0 <= t && t <= m_duration));
+    assert(("", 0 <= t && t <= duration_));
 
-    for (auto it = std::rbegin(m_segments); it != std::rend(m_segments); ++it)
+    for (auto it = std::rbegin(segments_); it != std::rend(segments_); ++it)
     {
         if (it->time_offset < t)
         {

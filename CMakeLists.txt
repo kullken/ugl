@@ -112,8 +112,8 @@ set_target_properties(ugl_lie_group
 
 add_library(ugl_trajectory
   src/trajectory/trajectory.cpp
-  src/trajectory/linear_trajectory.cpp
-  src/trajectory/angular_trajectory.cpp
+  src/trajectory/bezier_sequence.cpp
+  src/trajectory/slerp_sequence.cpp
 )
 
 target_include_directories(ugl_trajectory

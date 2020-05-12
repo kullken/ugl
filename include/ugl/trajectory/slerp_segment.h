@@ -9,12 +9,14 @@
 #include "ugl/math/quaternion.h"
 #include "ugl/math/slerp.h"
 
+#include "ugl/trajectory/trajectory.h"
+
 #include "ugl/lie_group/utility.h"
 
 namespace ugl::trajectory
 {
 
-class SlerpSegment
+class SlerpSegment : public AngularTrajectory
 {
 private:
     const double duration_ = 1;
@@ -50,15 +52,14 @@ public:
 
     double duration() const { return duration_; }
 
-    math::UnitQuaternion rotation(double t) const
+    math::Rotation rotation(double t) const override
     {
-        return math::slerp(q0_, q1_, t/duration_);
+        return math::Rotation(math::slerp(q0_, q1_, t/duration_));
     }
 
 
-    math::Vector3 angular_velocity([[maybe_unused]] double t) const
+    math::Vector3 ang_vel([[maybe_unused]] double t) const override
     {
-        // TODO?: Input parameter t exists to future proof the API. Remove?
         return 2 / duration_ * math::log(q1_*q0_.inverse()).vec();
     }
 };
