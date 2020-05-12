@@ -17,6 +17,11 @@ private:
 
 public:
     Trajectory() = default;
+    Trajectory(LinearTrajectory lin_traj, AngularTrajectory ang_traj)
+        : m_linear_trajectory(lin_traj)
+        , m_angular_trajectory(ang_traj)
+    {
+    }
 
     double duration() const { return std::min(m_linear_trajectory.duration(), m_angular_trajectory.duration()); }
 
