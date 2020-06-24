@@ -11,6 +11,8 @@ namespace ugl::trajectory
 class LinearTrajectory
 {
 public:
+    virtual std::unique_ptr<LinearTrajectory> clone() const = 0;
+
     virtual double duration() const = 0;
 
     virtual math::Vector3 pos(double t) const = 0;
@@ -21,6 +23,8 @@ public:
 class AngularTrajectory
 {
 public:
+    virtual std::unique_ptr<AngularTrajectory> clone() const = 0;
+
     virtual double duration() const = 0;
 
     virtual math::Rotation rotation(double t) const = 0;
@@ -35,6 +39,11 @@ private:
 
 public:
     Trajectory() = default;
+    Trajectory(const Trajectory& rhs)
+        : linear_trajectory_(rhs.linear_trajectory_->clone())
+        , angular_trajectory_(rhs.angular_trajectory_->clone())
+    {
+    }
 
     // TODO: Assert that XxxTrajectoryDerived is derived from XxxTrajectory.
     template<typename LinearTrajectoryDerived, typename AngularTrajectoryDerived>

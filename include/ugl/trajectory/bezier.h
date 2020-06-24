@@ -5,6 +5,7 @@
 #include <array>
 #include <utility>
 #include <algorithm>
+#include <memory>
 
 #include "ugl/math/vector.h"
 
@@ -40,6 +41,8 @@ private:
     const std::array<ugl::Vector3, size> points_;
 
 public:
+    Bezier(const Bezier&) = default;
+    
     explicit Bezier(std::array<ugl::Vector3, size> points) : points_(points)
     {
     }
@@ -49,6 +52,11 @@ public:
         , points_(points)
     {
         assert(("Duration must be positive.", duration > 0));
+    }
+
+    std::unique_ptr<LinearTrajectory> clone() const override
+    {
+        return std::make_unique<Bezier>(*this);
     }
 
     double duration() const override { return duration_; }

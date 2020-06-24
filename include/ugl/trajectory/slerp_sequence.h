@@ -25,7 +25,13 @@ private:
 
 public:
     SlerpSequence() = default;
+    SlerpSequence(const SlerpSequence&) = default;
     SlerpSequence(std::vector<Segment> segments);
+
+    std::unique_ptr<AngularTrajectory> clone() const override
+    {
+        return std::make_unique<SlerpSequence>(*this);
+    }
 
     double duration() const override { return duration_; }
 

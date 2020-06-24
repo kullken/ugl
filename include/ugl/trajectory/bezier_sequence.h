@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 #include "ugl/math/vector.h"
 
@@ -25,7 +26,13 @@ private:
 
 public:
     BezierSequence() = default;
+    BezierSequence(const BezierSequence&) = default;
     BezierSequence(std::vector<Segment> segments);
+
+    std::unique_ptr<LinearTrajectory> clone() const override
+    {
+        return std::make_unique<BezierSequence>(*this);
+    }
 
     double duration() const override { return duration_; }
 

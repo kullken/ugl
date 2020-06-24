@@ -4,6 +4,7 @@
 #include <cmath>
 #include <utility>
 #include <algorithm>
+#include <memory>
 
 #include "ugl/math/vector.h"
 #include "ugl/math/quaternion.h"
@@ -24,6 +25,8 @@ private:
     const math::UnitQuaternion q1_;
 
 public:
+    SlerpSegment(const SlerpSegment&) = default;
+
     SlerpSegment(double duration, math::UnitQuaternion start, math::UnitQuaternion end)
         : duration_(duration)
         , q0_(start)
@@ -48,6 +51,11 @@ public:
     explicit SlerpSegment(math::UnitQuaternion end)
         : q1_(end)
     {
+    }
+
+    std::unique_ptr<AngularTrajectory> clone() const override
+    {
+        return std::make_unique<SlerpSegment>(*this);
     }
 
     double duration() const { return duration_; }
