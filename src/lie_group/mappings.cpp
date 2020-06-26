@@ -69,11 +69,13 @@ Matrix<5,5> hat_map_se2_3(const Vector<9>& u)
 /// Based on Barrau17a-Invariant_EKF_stable_observer and Barfoot17-State_Estimation_for_Robotics
 Matrix<5,5> exp_map_SE2_3(const Vector<9>& zeta)
 {
-    const double phi = zeta.segment<3>(0).norm();
-    const Matrix<5,5> S = hat_map_se2_3(zeta);
-    const Matrix<5,5> I = Matrix<5,5>::Identity();
+    // const double phi = zeta.segment<3>(0).norm();
+    // const Matrix<5,5> S = hat_map_se2_3(zeta);
+    // const Matrix<5,5> I = Matrix<5,5>::Identity();
 
-    return I + S + (1 - std::cos(phi))/(phi*phi) * S*S + (phi - std::sin(phi))/(phi*phi*phi) * S*S*S;
+    // return I + S + (1 - std::cos(phi))/(phi*phi) * S*S + (phi - std::sin(phi))/(phi*phi*phi) * S*S*S;
+
+    return math::exp(hat_map_se2_3(zeta));
 }
 
 Vector<9> log_map_SE2_3(const Matrix<5,5>& U)
