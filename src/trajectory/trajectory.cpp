@@ -3,6 +3,17 @@
 namespace ugl::trajectory
 {
 
+Trajectory::Trajectory(const Trajectory& other)
+    : linear_trajectory_(other.linear_trajectory_->clone())
+    , angular_trajectory_(other.angular_trajectory_->clone())
+{
+}
 
+Trajectory& Trajectory::operator=(const Trajectory& other)
+{
+    linear_trajectory_ = other.linear_trajectory_->clone();
+    angular_trajectory_ = other.angular_trajectory_->clone();
+    return *this;
+}
 
 }

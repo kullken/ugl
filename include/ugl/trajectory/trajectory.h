@@ -34,16 +34,16 @@ public:
 class Trajectory
 {
 private:
-    const std::unique_ptr<LinearTrajectory> linear_trajectory_;
-    const std::unique_ptr<AngularTrajectory> angular_trajectory_;
+    std::unique_ptr<const LinearTrajectory> linear_trajectory_;
+    std::unique_ptr<const AngularTrajectory> angular_trajectory_;
 
 public:
     Trajectory() = default;
-    Trajectory(const Trajectory& rhs)
-        : linear_trajectory_(rhs.linear_trajectory_->clone())
-        , angular_trajectory_(rhs.angular_trajectory_->clone())
-    {
-    }
+    Trajectory(const Trajectory& other);
+    Trajectory(Trajectory&&) = default;
+    Trajectory& operator=(const Trajectory& other);
+    Trajectory& operator=(Trajectory&&) = default;
+    ~Trajectory() = default;
 
     // TODO: Assert that XxxTrajectoryDerived is derived from XxxTrajectory.
     template<typename LinearTrajectoryDerived, typename AngularTrajectoryDerived>
