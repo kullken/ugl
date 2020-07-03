@@ -44,7 +44,7 @@ const BezierSequence::Segment& BezierSequence::get_segment_at(double t) const
 
     for (auto it = std::rbegin(segments_); it != std::rend(segments_); ++it)
     {
-        if (it->time_offset < t)
+        if (it->time_offset <= t)
         {
             return *it;
         }
