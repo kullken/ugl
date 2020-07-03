@@ -1,9 +1,9 @@
-#include "math/quaternion.h"
+#include "ugl/math/quaternion.h"
 
 #include <cassert>
 #include <cmath>
 
-#include "math/vector.h"
+#include "ugl/math/vector.h"
 
 namespace ugl::math
 {

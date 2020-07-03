@@ -1,4 +1,4 @@
-#include "trajectory/trajectory.h"
+#include "ugl/trajectory/trajectory.h"
 
 namespace ugl::trajectory
 {

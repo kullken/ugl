@@ -4,7 +4,7 @@
 #include <cassert>
 #include <stdexcept>
 
-#include "math/vector.h"
+#include "ugl/math/vector.h"
 
 namespace ugl::trajectory
 {

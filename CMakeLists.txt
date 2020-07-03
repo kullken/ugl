@@ -62,8 +62,6 @@ add_library(ugl_math
 target_include_directories(ugl_math
   PUBLIC
     include
-  PRIVATE
-    include/ugl
 )
 
 target_link_libraries(ugl_math
@@ -90,8 +88,6 @@ add_library(ugl_lie_group
 target_include_directories(ugl_lie_group
   PUBLIC
     include
-  PRIVATE
-    include/ugl
 )
 
 target_link_libraries(ugl_lie_group
@@ -119,8 +115,6 @@ add_library(ugl_trajectory
 target_include_directories(ugl_trajectory
   PUBLIC
     include
-  PRIVATE
-    include/ugl
 )
 
 target_link_libraries(ugl_trajectory

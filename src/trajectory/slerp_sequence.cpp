@@ -1,4 +1,4 @@
-#include "trajectory/slerp_sequence.h"
+#include "ugl/trajectory/slerp_sequence.h"
 
 #include <cassert>
 #include <stdexcept>
