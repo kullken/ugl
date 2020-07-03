@@ -3,6 +3,8 @@
 #include <Eigen/Core>
 #include <Eigen/Geometry>
 
+#include "ugl/math/vector.h"
+
 namespace ugl
 {
 inline namespace math
@@ -21,6 +23,14 @@ UnitQuaternion exp(const Quaternion& q);
 
 /// Calculates the natural logarithm of a unit-norm quaternion.
 Quaternion log(const UnitQuaternion& q);
+
+// Creates a unit-norm quaternion from a angle-axis pair.
+//  angle is in radians.
+//  axis is of unit length.
+UnitQuaternion to_quat(double angle, Vector3 axis)
+{
+    return UnitQuaternion(Eigen::AngleAxisd(angle, axis));
+}
 
 } // namespace math
 } // namespace ugl
