@@ -1,22 +1,23 @@
 #include "trajectory/slerp_sequence.h"
 
-#include <vector>
 #include <cassert>
 #include <stdexcept>
+#include <vector>
 
-#include "math/vector.h"
-#include "math/matrix.h"
+#include "ugl/math/vector.h"
+#include "ugl/math/matrix.h"
+
+#include "ugl/trajectory/slerp_segment.h"
 
 namespace ugl::trajectory
 {
 
-SlerpSequence::SlerpSequence(std::vector<Segment> segments)
-    : segments_(segments)
+SlerpSequence::SlerpSequence(const std::vector<SlerpSegment>& segments)
 {
-    for (auto& segment : segments_)
+    for (const auto& arc : segments)
     {
-        segment.time_offset = duration_;
-        duration_ += segment.duration();
+        segments_.emplace_back(arc, duration_);
+        duration_ += arc.duration();
     }
     // TODO?: Assert that all segments are connected continously up to the x(?):th derivative.
 }

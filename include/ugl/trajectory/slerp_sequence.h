@@ -13,10 +13,13 @@ namespace ugl::trajectory
 
 class SlerpSequence : public AngularTrajectory
 {
-    class Segment : public trajectory::SlerpSegment
+    class Segment : public SlerpSegment
     {
     public:
         double time_offset;
+        Segment(const SlerpSegment& segment, double offset) 
+            : SlerpSegment(segment)
+            , time_offset(offset) {}
     };
 
 private:
@@ -26,7 +29,8 @@ private:
 public:
     SlerpSequence() = default;
     SlerpSequence(const SlerpSequence&) = default;
-    SlerpSequence(std::vector<Segment> segments);
+
+    SlerpSequence(const std::vector<SlerpSegment>& pieces);
 
     std::unique_ptr<AngularTrajectory> clone() const override
     {
