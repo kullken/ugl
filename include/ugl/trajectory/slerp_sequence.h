@@ -40,6 +40,7 @@ public:
     double duration() const override { return duration_; }
 
     math::Rotation rotation(double t) const override;
+    math::UnitQuaternion quat(double t) const override;
     math::Vector3 ang_vel(double t) const override;
 
 private:

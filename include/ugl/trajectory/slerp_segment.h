@@ -62,7 +62,12 @@ public:
 
     math::Rotation rotation(double t) const override
     {
-        return math::Rotation(math::slerp(q0_, q1_, t/duration_));
+        return math::Rotation(quat(t));
+    }
+
+    math::UnitQuaternion quat(double t) const override
+    {
+        return math::slerp(q0_, q1_, t/duration_);
     }
 
 

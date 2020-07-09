@@ -4,6 +4,7 @@
 
 #include "ugl/math/vector.h"
 #include "ugl/math/matrix.h"
+#include "ugl/math/quaternion.h"
 
 namespace ugl::trajectory
 {
@@ -28,6 +29,7 @@ public:
     virtual double duration() const = 0;
 
     virtual math::Rotation rotation(double t) const = 0;
+    virtual math::UnitQuaternion quat(double t) const = 0;
     virtual math::Vector3 ang_vel(double t) const = 0;
 };
 
@@ -60,6 +62,7 @@ public:
     math::Vector3 get_acceleration(double t) const { return linear_trajectory_->acc(t); }
 
     math::Rotation get_rotation(double t) const { return angular_trajectory_->rotation(t); }
+    math::UnitQuaternion get_quaternion(double t) const { return angular_trajectory_->quat(t); }
     math::Vector3 get_angular_velocity(double t) const { return angular_trajectory_->ang_vel(t); }
 };
 

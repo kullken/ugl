@@ -28,6 +28,12 @@ math::Rotation SlerpSequence::rotation(double t) const
     return segment.rotation(t - segment.time_offset);
 }
 
+math::UnitQuaternion SlerpSequence::quat(double t) const
+{
+    const Segment& segment = get_segment_at(t);
+    return segment.quat(t - segment.time_offset);
+}
+
 math::Vector3 SlerpSequence::ang_vel(double t) const
 {
     const Segment& segment = get_segment_at(t);
