@@ -45,9 +45,10 @@ catkin_package(
   DEPENDS Eigen3
 )
 
-include_directories(
-  include
-  ${EIGEN3_INCLUDE_DIRS}
+add_library(warnings INTERFACE)
+target_compile_options(warnings
+  INTERFACE
+    -Wall -Wextra -Wpedantic
 )
 
 ###################
@@ -66,7 +67,8 @@ target_include_directories(ugl_math
 
 target_link_libraries(ugl_math
   PUBLIC
-    Eigen3_INTERFACE
+  PRIVATE
+    warnings
 )
 
 set_target_properties(ugl_math
@@ -93,6 +95,8 @@ target_include_directories(ugl_lie_group
 target_link_libraries(ugl_lie_group
   PUBLIC
     ugl_math
+  PRIVATE
+    warnings
 )
 
 set_target_properties(ugl_lie_group
@@ -121,6 +125,8 @@ target_link_libraries(ugl_trajectory
   PUBLIC
     ugl_math
     ugl_lie_group
+  PRIVATE
+    warnings
 )
 
 set_target_properties(ugl_trajectory
@@ -129,14 +135,6 @@ set_target_properties(ugl_trajectory
     CXX_STANDARD_REQUIRED ON
     CMAKE_CXX_EXTENSIONS OFF
 )
-
-######################
-## Build properties ##
-######################
-
-# TODO?: Set flags directly on targets instead?
-set(WARNING_FLAGS "-Wall -Wextra -Wpedantic -Wno-deprecated-copy")
-list(APPEND CMAKE_CXX_FLAGS ${WARNING_FLAGS})
 
 #############
 ## Install ##
