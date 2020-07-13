@@ -1,28 +1,8 @@
 cmake_minimum_required(VERSION 3.10.2)
 project(ugl LANGUAGES CXX)
 
-find_package(catkin REQUIRED 
-  COMPONENTS
-  cmake_modules # Needed to find Eigen3
-)
-
-############
-## Eigen3 ##
-############
-
-find_package(Eigen3 REQUIRED)
-
-# Remove warning caused by unset variable.
-if (EIGEN3_INCLUDE_DIRS AND NOT Eigen3_INCLUDE_DIRS)
-  set(Eigen3_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIRS})
-endif()
-
-# Create interface target for Eigen
-add_library(Eigen3_INTERFACE INTERFACE)
-target_include_directories(Eigen3_INTERFACE
-  INTERFACE
-    ${EIGEN3_INCLUDE_DIRS}
-)
+find_package(catkin REQUIRED)
+find_package(Eigen3 3.3 REQUIRED)
 
 ###################################
 ## catkin specific configuration ##
@@ -36,13 +16,12 @@ target_include_directories(Eigen3_INTERFACE
 catkin_package(
   INCLUDE_DIRS
     include
-    ${EIGEN3_INCLUDE_DIRS}
   LIBRARIES
     ugl_math
     ugl_lie_group
     ugl_trajectory
 #  CATKIN_DEPENDS ...
-  DEPENDS Eigen3
+#  DEPENDS Eigen3
 )
 
 add_library(warnings INTERFACE)
@@ -67,6 +46,7 @@ target_include_directories(ugl_math
 
 target_link_libraries(ugl_math
   PUBLIC
+    Eigen3::Eigen
   PRIVATE
     warnings
 )
@@ -96,6 +76,7 @@ target_link_libraries(ugl_lie_group
   PUBLIC
     ugl_math
   PRIVATE
+    Eigen3::Eigen
     warnings
 )
 
