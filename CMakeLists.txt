@@ -1,28 +1,7 @@
 cmake_minimum_required(VERSION 3.10.2)
-project(ugl LANGUAGES CXX)
+project(ugl VERSION 0.0.1)
 
-find_package(catkin REQUIRED)
 find_package(Eigen3 3.3 REQUIRED)
-
-###################################
-## catkin specific configuration ##
-###################################
-## The catkin_package macro generates cmake config files for your package
-## Declare things to be passed to dependent projects
-## INCLUDE_DIRS: uncomment this if your package contains header files
-## LIBRARIES: libraries you create in this project that dependent projects also need
-## CATKIN_DEPENDS: catkin_packages dependent projects also need
-## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
-  INCLUDE_DIRS
-    include
-  LIBRARIES
-    ugl_math
-    ugl_lie_group
-    ugl_trajectory
-#  CATKIN_DEPENDS ...
-#  DEPENDS Eigen3
-)
 
 add_library(warnings INTERFACE)
 target_compile_options(warnings
@@ -34,24 +13,25 @@ target_compile_options(warnings
 ## Library: math ##
 ###################
 
-add_library(ugl_math
+add_library(math
   src/math/matrix.cpp
   src/math/quaternion.cpp
 )
 
-target_include_directories(ugl_math
+target_include_directories(math
   PUBLIC
-    include
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(ugl_math
+target_link_libraries(math
   PUBLIC
     Eigen3::Eigen
   PRIVATE
     warnings
 )
 
-set_target_properties(ugl_math
+set_target_properties(math
   PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
@@ -62,25 +42,26 @@ set_target_properties(ugl_math
 ## Library: lie_group ##
 ########################
 
-add_library(ugl_lie_group
+add_library(lie_group
   src/lie_group/utility.cpp
   src/lie_group/mappings.cpp
 )
 
-target_include_directories(ugl_lie_group
+target_include_directories(lie_group
   PUBLIC
-    include
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(ugl_lie_group
+target_link_libraries(lie_group
   PUBLIC
-    ugl_math
+    math
   PRIVATE
     Eigen3::Eigen
     warnings
 )
 
-set_target_properties(ugl_lie_group
+set_target_properties(lie_group
   PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
@@ -91,26 +72,27 @@ set_target_properties(ugl_lie_group
 ## Library: trajectory ##
 #########################
 
-add_library(ugl_trajectory
+add_library(trajectory
   src/trajectory/trajectory.cpp
   src/trajectory/bezier_sequence.cpp
   src/trajectory/slerp_sequence.cpp
 )
 
-target_include_directories(ugl_trajectory
+target_include_directories(trajectory
   PUBLIC
-    include
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
 )
 
-target_link_libraries(ugl_trajectory
+target_link_libraries(trajectory
   PUBLIC
-    ugl_math
-    ugl_lie_group
+    math
+    lie_group
   PRIVATE
     warnings
 )
 
-set_target_properties(ugl_trajectory
+set_target_properties(trajectory
   PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
@@ -121,27 +103,24 @@ set_target_properties(ugl_trajectory
 ## Install ##
 #############
 
-# all install targets should use catkin DESTINATION variables
-# See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 
-# Mark libraries for installation
-install(TARGETS ugl_math ugl_trajectory ugl_lie_group
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+install(DIRECTORY include/
+  DESTINATION include
 )
 
-# Mark cpp header files for installation
-install(DIRECTORY include/${PROJECT_NAME}/
-  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+install(TARGETS math trajectory lie_group 
+  EXPORT ${PROJECT_NAME}-export
+  ARCHIVE DESTINATION lib/ugl
+  LIBRARY DESTINATION lib/ugl
+  RUNTIME DESTINATION bin
 )
 
-#############
-## Testing ##
-#############
+install(EXPORT ${PROJECT_NAME}-export
+  FILE uglTargets.cmake
+  NAMESPACE ugl::
+  DESTINATION lib/cmake/ugl
+)
 
-## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_localisation.cpp)
-# if(TARGET ${PROJECT_NAME}-test)
-#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
-# endif()
+install(FILES "cmake/uglConfig.cmake"
+  DESTINATION lib/cmake/ugl
+)
