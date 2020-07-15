@@ -13,9 +13,13 @@ target_compile_options(warnings
 ## Library: math ##
 ###################
 
-add_library(math
-  src/math/matrix.cpp
-  src/math/quaternion.cpp
+add_library(math)
+add_library(ugl::math ALIAS math)
+
+target_sources(math
+  PRIVATE
+    src/math/matrix.cpp
+    src/math/quaternion.cpp
 )
 
 target_include_directories(math
@@ -42,9 +46,13 @@ set_target_properties(math
 ## Library: lie_group ##
 ########################
 
-add_library(lie_group
-  src/lie_group/utility.cpp
-  src/lie_group/mappings.cpp
+add_library(lie_group)
+add_library(ugl::lie_group ALIAS lie_group)
+
+target_sources(lie_group
+  PRIVATE
+    src/lie_group/utility.cpp
+    src/lie_group/mappings.cpp
 )
 
 target_include_directories(lie_group
@@ -72,10 +80,14 @@ set_target_properties(lie_group
 ## Library: trajectory ##
 #########################
 
-add_library(trajectory
-  src/trajectory/trajectory.cpp
-  src/trajectory/bezier_sequence.cpp
-  src/trajectory/slerp_sequence.cpp
+add_library(trajectory)
+add_library(ugl::trajectory ALIAS trajectory)
+
+target_sources(trajectory
+  PRIVATE
+    src/trajectory/trajectory.cpp
+    src/trajectory/bezier_sequence.cpp
+    src/trajectory/slerp_sequence.cpp
 )
 
 target_include_directories(trajectory
@@ -102,7 +114,6 @@ set_target_properties(trajectory
 #############
 ## Install ##
 #############
-
 
 install(DIRECTORY include/
   DESTINATION include
