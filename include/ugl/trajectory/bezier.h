@@ -30,7 +30,6 @@ static constexpr unsigned int factorial(unsigned int n)
     return (n == 1 || n == 0) ? 1 : n * factorial(n - 1);
 }
 
-// template<std::size_t degree>
 template<int degree>
 class Bezier : public LinearTrajectory
 {
@@ -124,7 +123,7 @@ template<>
 ugl::Vector3 Bezier<1>::acc([[maybe_unused]] double t) const { return ugl::Vector3::Zero(); }
 
 /// Split Bézier-curve into two new curves at time t.
-template<std::size_t degree>
+template<int degree>
 std::pair<Bezier<degree>, Bezier<degree>> split(Bezier<degree> bezier, double t);
 
 /// Creates a Bézier curve from a duration and position, velocity and acceleration at start and end.

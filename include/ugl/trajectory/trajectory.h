@@ -12,6 +12,8 @@ namespace ugl::trajectory
 class LinearTrajectory
 {
 public:
+    virtual ~LinearTrajectory() = default;
+
     virtual std::unique_ptr<LinearTrajectory> clone() const = 0;
 
     virtual double duration() const = 0;
@@ -24,6 +26,8 @@ public:
 class AngularTrajectory
 {
 public:
+    virtual ~AngularTrajectory() = default;
+
     virtual std::unique_ptr<AngularTrajectory> clone() const = 0;
 
     virtual double duration() const = 0;
