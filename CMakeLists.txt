@@ -124,6 +124,43 @@ set_target_properties(trajectory
     CMAKE_CXX_EXTENSIONS OFF
 )
 
+#####################
+## Library: random ##
+#####################
+
+add_library(random)
+add_library(ugl::random ALIAS random)
+
+target_sources(random
+  PRIVATE
+    src/random/random_engine.cpp
+    src/random/seed.cpp
+    src/random/normal_distribution.cpp
+)
+
+target_include_directories(random
+  PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+  PRIVATE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/random>
+)
+
+target_link_libraries(random
+  PUBLIC
+    ugl::math
+  PRIVATE
+    Eigen3::Eigen
+    warnings
+)
+
+set_target_properties(random
+  PROPERTIES
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED ON
+    CMAKE_CXX_EXTENSIONS OFF
+)
+
 #############
 ## Install ##
 #############
@@ -132,7 +169,7 @@ install(DIRECTORY include/
   DESTINATION include
 )
 
-install(TARGETS math trajectory lie_group 
+install(TARGETS math trajectory lie_group random
   EXPORT ${PROJECT_NAME}-export
   ARCHIVE DESTINATION lib/ugl
   LIBRARY DESTINATION lib/ugl
