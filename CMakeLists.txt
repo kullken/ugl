@@ -7,6 +7,19 @@ add_library(warnings INTERFACE)
 target_compile_options(warnings
   INTERFACE
     -Wall -Wextra -Wpedantic
+    -Wshadow
+    -Wnon-virtual-dtor 
+    -Wcast-align
+    -Wunused
+    -Woverloaded-virtual
+    -Wconversion
+    -Wsign-conversion
+    -Wnull-dereference
+    -Wdouble-promotion
+    -Wmisleading-indentation
+    -Wduplicated-cond
+    -Wduplicated-branches
+    -Wuseless-cast
 )
 
 ###################
