@@ -76,9 +76,9 @@ template<int size>
 typename NormalDistribution<size>::VectorType NormalDistribution<size>::sample_white_noise()
 {
     VectorType sample;
-    for (auto& scalar : sample)
+    for (int i = 0; i < size; ++i)
     {
-        scalar = NormalDistribution<1>::sample(0, 1);
+        sample[i] = NormalDistribution<1>::sample(0, 1);
     }
     return sample;
 }
