@@ -26,7 +26,7 @@ target_compile_options(warnings
 ## Library: math ##
 ###################
 
-add_library(math)
+add_library(math SHARED)
 add_library(ugl::math ALIAS math)
 
 target_sources(math
@@ -59,7 +59,7 @@ set_target_properties(math
 ## Library: lie_group ##
 ########################
 
-add_library(lie_group)
+add_library(lie_group SHARED)
 add_library(ugl::lie_group ALIAS lie_group)
 
 target_sources(lie_group
@@ -93,7 +93,7 @@ set_target_properties(lie_group
 ## Library: trajectory ##
 #########################
 
-add_library(trajectory)
+add_library(trajectory SHARED)
 add_library(ugl::trajectory ALIAS trajectory)
 
 target_sources(trajectory
@@ -128,7 +128,7 @@ set_target_properties(trajectory
 ## Library: random ##
 #####################
 
-add_library(random)
+add_library(random SHARED)
 add_library(ugl::random ALIAS random)
 
 target_sources(random
