@@ -99,6 +99,7 @@ add_library(ugl::trajectory ALIAS trajectory)
 target_sources(trajectory
   PRIVATE
     src/trajectory/trajectory.cpp
+    src/trajectory/bezier.cpp
     src/trajectory/bezier_sequence.cpp
     src/trajectory/slerp_sequence.cpp
 )
