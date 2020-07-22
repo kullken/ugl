@@ -44,7 +44,7 @@ private:
     std::unique_ptr<const AngularTrajectory> angular_trajectory_;
 
 public:
-    Trajectory();
+    Trajectory() = default;
     Trajectory(const Trajectory& other);
     Trajectory(Trajectory&&) = default;
     Trajectory& operator=(const Trajectory& other);
