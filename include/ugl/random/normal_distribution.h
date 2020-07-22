@@ -17,7 +17,7 @@ public:
 
     NormalDistribution() = default;
 
-    NormalDistribution(const MatrixType& covar)
+    explicit NormalDistribution(const MatrixType& covar)
         : covar_(covar)
         , transform_(create_transform(covar))
     {
@@ -50,9 +50,9 @@ private:
     }
 
 private:
-    const VectorType mean_ = VectorType::Zero();
-    const MatrixType covar_ = MatrixType::Identity();
-    const MatrixType transform_ = MatrixType::Identity();
+    VectorType mean_ = VectorType::Zero();
+    MatrixType covar_ = MatrixType::Identity();
+    MatrixType transform_ = MatrixType::Identity();
 };
 
 
