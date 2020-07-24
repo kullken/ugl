@@ -33,6 +33,7 @@ target_sources(math
   PRIVATE
     src/math/matrix.cpp
     src/math/quaternion.cpp
+    src/math/slerp.cpp
 )
 
 target_include_directories(math
