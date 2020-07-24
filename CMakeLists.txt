@@ -22,6 +22,7 @@ target_compile_options(warnings
     -Wuseless-cast
 )
 
+include(cmake/StaticAnalyzers.cmake)
 ###################
 ## Library: math ##
 ###################
