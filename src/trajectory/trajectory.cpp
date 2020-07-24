@@ -1,11 +1,5 @@
 #include "ugl/trajectory/trajectory.h"
 
-#include "ugl/math/vector.h"
-#include "ugl/math/quaternion.h"
-
-#include "ugl/trajectory/bezier.h"
-#include "ugl/trajectory/slerp_segment.h"
-
 namespace ugl::trajectory
 {
 
