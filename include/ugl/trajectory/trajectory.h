@@ -40,8 +40,8 @@ public:
 class Trajectory
 {
 private:
-    std::unique_ptr<const LinearTrajectory> linear_trajectory_;
-    std::unique_ptr<const AngularTrajectory> angular_trajectory_;
+    std::unique_ptr<const LinearTrajectory> linear_trajectory_ = nullptr;
+    std::unique_ptr<const AngularTrajectory> angular_trajectory_ = nullptr;
 
 public:
     Trajectory() = default;

@@ -26,8 +26,8 @@ private:
 
 public:
     BezierSequence() = default;
-    BezierSequence(const BezierSequence&) = default;
-    BezierSequence(std::vector<Segment> segments);
+
+    explicit BezierSequence(const std::vector<Segment>& segments);
 
     std::unique_ptr<LinearTrajectory> clone() const override
     {

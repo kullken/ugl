@@ -9,7 +9,7 @@
 namespace ugl::trajectory
 {
 
-BezierSequence::BezierSequence(std::vector<Segment> segments)
+BezierSequence::BezierSequence(const std::vector<Segment>& segments)
     : segments_(segments)
 {
     for (auto& segment : segments_)

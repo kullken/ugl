@@ -30,7 +30,7 @@ public:
     SlerpSequence() = default;
     SlerpSequence(const SlerpSequence&) = default;
 
-    SlerpSequence(const std::vector<SlerpSegment>& pieces);
+    explicit SlerpSequence(const std::vector<SlerpSegment>& segments);
 
     std::unique_ptr<AngularTrajectory> clone() const override
     {

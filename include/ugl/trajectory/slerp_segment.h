@@ -27,7 +27,7 @@ private:
 public:
     SlerpSegment(const SlerpSegment&) = default;
 
-    SlerpSegment(double duration, math::UnitQuaternion start, math::UnitQuaternion end)
+    SlerpSegment(double duration, const math::UnitQuaternion& start, const math::UnitQuaternion& end)
         : duration_(duration)
         , q0_(start)
         , q1_(end)
@@ -35,20 +35,20 @@ public:
         assert(("Duration must be positive.", duration > 0));
     }
 
-    SlerpSegment(double duration, math::UnitQuaternion end)
+    SlerpSegment(double duration, const math::UnitQuaternion& end)
         : duration_(duration)
         , q1_(end)
     {
         assert(("Duration must be positive.", duration > 0));
     }
 
-    SlerpSegment(math::UnitQuaternion start, math::UnitQuaternion end)
+    SlerpSegment(const math::UnitQuaternion& start, const math::UnitQuaternion& end)
         : q0_(start)
         , q1_(end)
     {
     }
 
-    explicit SlerpSegment(math::UnitQuaternion end)
+    explicit SlerpSegment(const math::UnitQuaternion& end)
         : q1_(end)
     {
     }
@@ -58,7 +58,10 @@ public:
         return std::make_unique<SlerpSegment>(*this);
     }
 
-    double duration() const { return duration_; }
+    double duration() const override 
+    {
+        return duration_;
+    }
 
     math::Rotation rotation(double t) const override
     {
@@ -69,7 +72,6 @@ public:
     {
         return math::slerp(q0_, q1_, t/duration_);
     }
-
 
     math::Vector3 ang_vel([[maybe_unused]] double t) const override
     {
