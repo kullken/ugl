@@ -17,9 +17,6 @@ target_compile_options(warnings
     -Wnull-dereference
     -Wdouble-promotion
     -Wmisleading-indentation
-    -Wduplicated-cond
-    -Wduplicated-branches
-    -Wuseless-cast
 )
 
 include(cmake/StaticAnalyzers.cmake)
