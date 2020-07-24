@@ -30,6 +30,9 @@ public:
     {
     }
 
+    const VectorType& mean() const { return mean_; }
+    const MatrixType& covar() const { return covar_; }
+
     VectorType sample() const
     {
         return mean_ + transform_ * sample_white_noise();
@@ -62,6 +65,10 @@ class NormalDistribution<1>
 public:
     NormalDistribution() = default;
     NormalDistribution(double mean, double variance);
+
+    double mean() const { return mean_; }
+    double stddev() const { return stddev_; }
+    double variance() const { return variance_; }
 
     double sample() const;
     static double sample(double mean, double variance);
