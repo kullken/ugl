@@ -7,16 +7,11 @@
 
 namespace ugl
 {
-inline namespace math
+namespace math
 {
 
 using Quaternion = Eigen::Quaternion<double>;
 using UnitQuaternion = Eigen::Quaternion<double>;
-
-} // namespace math
-
-namespace math
-{
 
 /// Calculates the exponential of an imaginary-only quaternion.
 UnitQuaternion exp(const Quaternion& q);
@@ -33,4 +28,8 @@ inline UnitQuaternion to_quat(double angle, Vector3 axis)
 }
 
 } // namespace math
+
+using Quaternion = math::Quaternion;
+using UnitQuaternion = math::UnitQuaternion;
+
 } // namespace ugl
