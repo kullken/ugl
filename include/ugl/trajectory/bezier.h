@@ -50,7 +50,7 @@ public:
         : duration_(duration)
         , points_(points)
     {
-        assert(("Duration must be positive.", duration > 0));
+        assert(duration > 0); // Duration must be positive.
     }
 
     std::unique_ptr<LinearTrajectory> clone() const override

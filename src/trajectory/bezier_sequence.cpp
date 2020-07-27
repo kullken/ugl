@@ -40,7 +40,7 @@ math::Vector3 BezierSequence::acc(double t) const
 
 const BezierSequence::Segment& BezierSequence::get_segment_at(double t) const
 {
-    assert(("", 0 <= t && t <= duration_));
+    assert(0 <= t && t <= duration_);
 
     for (auto it = std::rbegin(segments_); it != std::rend(segments_); ++it)
     {

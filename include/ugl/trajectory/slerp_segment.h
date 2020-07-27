@@ -32,14 +32,14 @@ public:
         , q0_(start)
         , q1_(end)
     {
-        assert(("Duration must be positive.", duration > 0));
+        assert(duration > 0); // Duration must be positive.
     }
 
     SlerpSegment(double duration, const math::UnitQuaternion& end)
         : duration_(duration)
         , q1_(end)
     {
-        assert(("Duration must be positive.", duration > 0));
+        assert(duration > 0); // Duration must be positive.
     }
 
     SlerpSegment(const math::UnitQuaternion& start, const math::UnitQuaternion& end)
