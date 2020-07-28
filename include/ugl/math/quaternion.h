@@ -10,8 +10,8 @@ namespace ugl
 namespace math
 {
 
-using Quaternion = Eigen::Quaternion<double>;
-using UnitQuaternion = Eigen::Quaternion<double>;
+using Quaternion = Eigen::Quaternion<double, Eigen::DontAlign>;
+using UnitQuaternion = Eigen::Quaternion<double, Eigen::DontAlign>;
 
 /// Calculates the exponential of an imaginary-only quaternion.
 UnitQuaternion exp(const Quaternion& q);

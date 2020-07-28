@@ -9,7 +9,7 @@ namespace math
 {
 
 template <int rows, int cols>
-using Matrix = Eigen::Matrix<double, rows, cols>;
+using Matrix = Eigen::Matrix<double, rows, cols, Eigen::DontAlign>;
 
 using Matrix3 = Matrix<3, 3>;
 using Rotation = Matrix<3, 3>;
