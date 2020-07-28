@@ -3,8 +3,11 @@ project(ugl VERSION 0.0.1)
 
 find_package(Eigen3 3.3 REQUIRED)
 
-add_library(warnings INTERFACE)
-target_compile_options(warnings
+add_library(project_options INTERFACE)
+target_compile_features(project_options INTERFACE cxx_std_17)
+
+add_library(project_warnings INTERFACE)
+target_compile_options(project_warnings
   INTERFACE
     -Wall -Wextra -Wpedantic
     -Wshadow
@@ -20,6 +23,10 @@ target_compile_options(warnings
 )
 
 include(cmake/StaticAnalyzers.cmake)
+include(cmake/Sanitizers.cmake)
+
+enable_sanitizers(project_options)
+
 ###################
 ## Library: math ##
 ###################
@@ -44,14 +51,8 @@ target_link_libraries(math
   PUBLIC
     Eigen3::Eigen
   PRIVATE
-    warnings
-)
-
-set_target_properties(math
-  PROPERTIES
-    CXX_STANDARD 17
-    CXX_STANDARD_REQUIRED ON
-    CMAKE_CXX_EXTENSIONS OFF
+    project_options
+    project_warnings
 )
 
 ########################
@@ -77,15 +78,9 @@ target_link_libraries(lie_group
   PUBLIC
     math
   PRIVATE
+    project_options
+    project_warnings
     Eigen3::Eigen
-    warnings
-)
-
-set_target_properties(lie_group
-  PROPERTIES
-    CXX_STANDARD 17
-    CXX_STANDARD_REQUIRED ON
-    CMAKE_CXX_EXTENSIONS OFF
 )
 
 #########################
@@ -114,14 +109,8 @@ target_link_libraries(trajectory
     math
     lie_group
   PRIVATE
-    warnings
-)
-
-set_target_properties(trajectory
-  PROPERTIES
-    CXX_STANDARD 17
-    CXX_STANDARD_REQUIRED ON
-    CMAKE_CXX_EXTENSIONS OFF
+    project_options
+    project_warnings
 )
 
 #####################
@@ -150,15 +139,9 @@ target_link_libraries(random
   PUBLIC
     ugl::math
   PRIVATE
+    project_options
+    project_warnings
     Eigen3::Eigen
-    warnings
-)
-
-set_target_properties(random
-  PROPERTIES
-    CXX_STANDARD 17
-    CXX_STANDARD_REQUIRED ON
-    CMAKE_CXX_EXTENSIONS OFF
 )
 
 #############
