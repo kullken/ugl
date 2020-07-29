@@ -74,9 +74,9 @@ public:
     static double sample(double mean, double variance);
 
 private:
-    const double mean_ = 0.0;
-    const double variance_ = 1.0;
-    const double stddev_ = 1.0;
+    double mean_ = 0.0;
+    double variance_ = 1.0;
+    double stddev_ = 1.0;
 };
 
 template<int size>
