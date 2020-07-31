@@ -71,14 +71,14 @@ public:
         {
             derivative_points[i] = (points_[i+1] - points_[i]) * degree / duration_;
         }
-        return Bezier<degree-1>(derivative_points);
+        return Bezier<degree-1>(duration_, derivative_points);
     }
 
     Bezier<degree> get_reversed() const
     {
         std::array<ugl::Vector3, size> reverse_points = points_;
         std::reverse(std::begin(reverse_points), std::end(reverse_points));
-        return Bezier{reverse_points};
+        return Bezier{duration_, reverse_points};
     }
 
 private:
