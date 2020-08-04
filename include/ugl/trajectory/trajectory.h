@@ -39,10 +39,6 @@ public:
 
 class Trajectory
 {
-private:
-    std::unique_ptr<const LinearTrajectory> linear_trajectory_ = nullptr;
-    std::unique_ptr<const AngularTrajectory> angular_trajectory_ = nullptr;
-
 public:
     Trajectory() = default;
     Trajectory(const Trajectory& other);
@@ -68,6 +64,10 @@ public:
     math::Rotation get_rotation(double t) const { return angular_trajectory_->rotation(t); }
     math::UnitQuaternion get_quaternion(double t) const { return angular_trajectory_->quat(t); }
     math::Vector3 get_angular_velocity(double t) const { return angular_trajectory_->ang_vel(t); }
+
+private:
+    std::unique_ptr<const LinearTrajectory> linear_trajectory_ = nullptr;
+    std::unique_ptr<const AngularTrajectory> angular_trajectory_ = nullptr;
 };
 
 }

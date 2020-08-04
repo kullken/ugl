@@ -19,11 +19,6 @@ namespace ugl::trajectory
 
 class SlerpSegment : public AngularTrajectory
 {
-private:
-    const double duration_ = 1;
-    const math::UnitQuaternion q0_ = lie::identity<math::UnitQuaternion>();
-    const math::UnitQuaternion q1_;
-
 public:
     SlerpSegment(const SlerpSegment&) = default;
 
@@ -77,6 +72,11 @@ public:
     {
         return 2 / duration_ * math::log(q1_*q0_.inverse()).vec();
     }
+
+private:
+    const double duration_ = 1;
+    const math::UnitQuaternion q0_ = lie::identity<math::UnitQuaternion>();
+    const math::UnitQuaternion q1_;
 };
 
 }

@@ -22,10 +22,6 @@ class SlerpSequence : public AngularTrajectory
             , time_offset(offset) {}
     };
 
-private:
-    double duration_ = 0;
-    std::vector<Segment> segments_;
-
 public:
     SlerpSequence() = default;
     SlerpSequence(const SlerpSequence&) = default;
@@ -45,6 +41,10 @@ public:
 
 private:
     const Segment& get_segment_at(double t) const;
+
+private:
+    double duration_ = 0;
+    std::vector<Segment> segments_;
 };
 
 }

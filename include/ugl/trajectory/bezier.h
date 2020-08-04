@@ -35,10 +35,6 @@ class Bezier : public LinearTrajectory
 {
     static constexpr std::size_t size = degree + 1;
 
-private:
-    const double duration_ = 1;
-    const std::array<ugl::Vector3, size> points_;
-
 public:
     Bezier(const Bezier&) = default;
     
@@ -111,6 +107,9 @@ private:
         return coeffs;
     }
 
+private:
+    const double duration_ = 1;
+    const std::array<ugl::Vector3, size> points_;
 };
 
 template<>
