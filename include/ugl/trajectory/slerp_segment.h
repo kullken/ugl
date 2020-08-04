@@ -1,9 +1,6 @@
 #pragma once
 
 #include <cassert>
-#include <cmath>
-#include <utility>
-#include <algorithm>
 #include <memory>
 
 #include "ugl/math/vector.h"
@@ -20,8 +17,6 @@ namespace ugl::trajectory
 class SlerpSegment : public AngularTrajectory
 {
 public:
-    SlerpSegment(const SlerpSegment&) = default;
-
     SlerpSegment(double duration, const math::UnitQuaternion& start, const math::UnitQuaternion& end)
         : duration_(duration)
         , q0_(start)
@@ -68,7 +63,7 @@ public:
         return math::slerp(q0_, q1_, t/duration_);
     }
 
-    math::Vector3 ang_vel([[maybe_unused]] double t) const override
+    math::Vector3 ang_vel(double) const override
     {
         return 2 / duration_ * math::log(q1_*q0_.inverse()).vec();
     }

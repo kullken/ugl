@@ -14,17 +14,6 @@
 namespace ugl::trajectory
 {
 
-// TODO: Add (partial-)constexpr support.
-
-// TODO: Add concepts support.
-// #include <concepts>
-// template<typename T>
-// concept Vector = requires(T a, T b)
-// {
-//     { a + b } -> std::same_as<T>;
-//      etc..
-// };
-
 static constexpr unsigned int factorial(unsigned int n)
 {
     return (n == 1 || n == 0) ? 1 : n * factorial(n - 1);
@@ -36,8 +25,6 @@ class Bezier : public LinearTrajectory
     static constexpr std::size_t size = degree + 1;
 
 public:
-    Bezier(const Bezier&) = default;
-    
     explicit Bezier(std::array<ugl::Vector3, size> points) : points_(points)
     {
     }

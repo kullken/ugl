@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <vector>
 
 #include "ugl/math/vector.h"
@@ -24,7 +25,6 @@ class SlerpSequence : public AngularTrajectory
 
 public:
     SlerpSequence() = default;
-    SlerpSequence(const SlerpSequence&) = default;
 
     explicit SlerpSequence(const std::vector<SlerpSegment>& segments);
 
