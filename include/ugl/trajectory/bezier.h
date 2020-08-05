@@ -43,6 +43,9 @@ public:
 
     double duration() const override { return duration_; }
 
+    ugl::Vector3 start() const override { return points_.front(); }
+    ugl::Vector3 end() const override { return points_.back(); }
+
     ugl::Vector3 pos(double t) const override { return calc_value(t); }
     ugl::Vector3 vel(double t) const override { return get_derivative().pos(t); }
     ugl::Vector3 acc(double t) const override { return get_derivative().vel(t); }

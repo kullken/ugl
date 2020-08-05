@@ -18,6 +18,14 @@ public:
 
     virtual double duration() const = 0;
 
+    // Returns the start position of the trajectory. Functionally equivalent 
+    // to calling pos(0), but might be faster depending on implementation.
+    virtual math::Vector3 start() const = 0;
+
+    // Returns the end position of the trajectory. Functionally equivalent 
+    // to calling pos(duration()), but might be faster depending on implementation.
+    virtual math::Vector3 end() const = 0;
+
     virtual math::Vector3 pos(double t) const = 0;
     virtual math::Vector3 vel(double t) const = 0;
     virtual math::Vector3 acc(double t) const = 0;

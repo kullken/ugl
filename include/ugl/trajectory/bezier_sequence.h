@@ -45,6 +45,9 @@ public:
 
     double duration() const override { return duration_; }
 
+    ugl::Vector3 start() const override { return segments_.front().start(); }
+    ugl::Vector3 end() const override { return segments_.back().end(); }
+
     math::Vector3 pos(double t) const override
     {
         const Segment& segment = get_segment_at(t);
