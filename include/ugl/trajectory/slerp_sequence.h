@@ -34,6 +34,7 @@ public:
     }
 
     double duration() const override { return duration_; }
+    const auto& segments() const { return segments_; }
 
     math::Rotation rotation(double t) const override;
     math::UnitQuaternion quat(double t) const override;
