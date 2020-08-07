@@ -69,9 +69,9 @@ public:
     }
 
 private:
-    const double duration_ = 1;
-    const math::UnitQuaternion q0_ = lie::identity<math::UnitQuaternion>();
-    const math::UnitQuaternion q1_;
+    double duration_ = 1;
+    math::UnitQuaternion q0_ = lie::identity<math::UnitQuaternion>();
+    math::UnitQuaternion q1_;
 };
 
 }

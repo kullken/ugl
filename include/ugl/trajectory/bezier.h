@@ -100,8 +100,8 @@ private:
     }
 
 private:
-    const double duration_ = 1;
-    const std::array<ugl::Vector3, size> points_;
+    double duration_ = 1;
+    std::array<ugl::Vector3, size> points_;
 };
 
 template<>
