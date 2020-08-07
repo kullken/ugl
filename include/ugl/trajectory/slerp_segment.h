@@ -48,10 +48,7 @@ public:
         return std::make_unique<SlerpSegment>(*this);
     }
 
-    double duration() const override 
-    {
-        return duration_;
-    }
+    double duration() const override { return duration_; }
 
     const ugl::UnitQuaternion& start() const { return q0_; }
     const ugl::UnitQuaternion& end() const { return q1_; }

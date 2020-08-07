@@ -25,7 +25,8 @@ class Bezier : public LinearTrajectory
     static constexpr std::size_t size = degree + 1;
 
 public:
-    explicit Bezier(std::array<ugl::Vector3, size> points) : points_(points)
+    explicit Bezier(std::array<ugl::Vector3, size> points)
+        : points_(points)
     {
     }
 
