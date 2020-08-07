@@ -42,6 +42,7 @@ public:
     }
 
     double duration() const override { return duration_; }
+    const auto& points() const { return points_; }
 
     ugl::Vector3 start() const override { return points_.front(); }
     ugl::Vector3 end() const override { return points_.back(); }

@@ -53,6 +53,9 @@ public:
         return duration_;
     }
 
+    const ugl::UnitQuaternion& start() const { return q0_; }
+    const ugl::UnitQuaternion& end() const { return q1_; }
+
     math::Rotation rotation(double t) const override
     {
         return math::Rotation(quat(t));
