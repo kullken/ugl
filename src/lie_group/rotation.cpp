@@ -10,11 +10,19 @@ namespace ugl::lie
 
 Rotation Rotation::exp(const ugl::Vector3& w)
 {
-    return Rotation{math::exp(hat(w))};
+    constexpr double kTolerance = 1e-10;
+    const double theta = w.norm();
+    if (theta < kTolerance) {
+        return Rotation::Identity();
+    }
+    const so3 S = hat(w);
+    const Rotation R{ugl::Matrix3::Identity() + std::sin(theta)/theta * S + ((1-cos(theta))/(theta*theta))*S*S};
+    return R;
 }
 
 ugl::Vector3 Rotation::log(const Rotation& R)
 {
+    // TODO: Find analytical solution here as well.
     return vee(math::log(R.matrix()));
 }
 
