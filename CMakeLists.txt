@@ -66,6 +66,7 @@ target_sources(lie_group
   PRIVATE
     src/lie_group/utility.cpp
     src/lie_group/mappings.cpp
+    src/lie_group/rotation.cpp
 )
 
 target_include_directories(lie_group
