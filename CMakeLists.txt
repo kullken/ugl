@@ -67,6 +67,7 @@ target_sources(lie_group
     src/lie_group/utility.cpp
     src/lie_group/mappings.cpp
     src/lie_group/rotation.cpp
+    src/lie_group/pose.cpp
     src/lie_group/extended_pose.cpp
 )
 
