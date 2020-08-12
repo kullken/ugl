@@ -51,4 +51,16 @@ ugl::Matrix3 Rotation::left_jacobian(const ugl::Vector3 phi)
     return Matrix3::Identity() + ((1 - std::cos(phi_norm)) / phi_norm) * W + ((phi_norm - std::sin(phi_norm)) / phi_norm) * W*W;
 }
 
+ugl::Matrix3 Rotation::left_jacobian_inv(const ugl::Vector3 phi)
+{
+    constexpr double kTolerance = 1e-10;
+    const double phi_norm = phi.norm();
+    if (phi_norm < kTolerance) {
+        return Matrix3::Identity() - 0.5 * hat(phi);
+    }
+    const Matrix3 W = hat(phi / phi_norm);
+    const double phi_norm_half = phi_norm / 2;
+    return Matrix3::Identity() - (phi_norm_half) * W + (1 - ((phi_norm_half) / std::tan(phi_norm_half))) * W*W;
+}
+
 } // namespace ugl::lie

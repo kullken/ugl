@@ -20,14 +20,33 @@ ExtendedPose ExtendedPose::exp(const Vector<9>& u)
         return ExtendedPose{SO3::Identity(), nu, rho};
     }
 
-    const Matrix3 A = SO3::left_jacobian(phi);
-    return ExtendedPose{SO3::exp(phi), A * nu, A * rho};
+    const Matrix3 J = SO3::left_jacobian(phi);
+    return ExtendedPose{SO3::exp(phi), J * nu, J * rho};
 }
 
 Vector<9> ExtendedPose::log(const ExtendedPose& T)
 {
-    // TODO: Analytical solution
-    return vee(math::log(T.matrix()));
+    const Vector3 phi = SO3::log(T.R_);
+    const Vector3& v = T.vel_;
+    const Vector3& p = T.pos_;
+    
+    constexpr double kTolerance = 1e-10;
+    const double phi_norm = phi.norm();
+    // TODO: Pre-allocate result variable since it is used in both branches?
+    if (phi_norm < kTolerance)
+    {
+        Vector<9> result;
+        result << phi, v, p;
+        return result;
+    }
+
+    const Matrix3 Jinv = SO3::left_jacobian_inv(phi);
+    // TODO: Skip temp. variables nu and rho?
+    const Vector3 nu  = Jinv * v;
+    const Vector3 rho = Jinv * p;
+    Vector<9> result;
+    result << phi, nu, rho;
+    return result;
 }
 
 se2_3 ExtendedPose::hat(const Vector<9>& u)

@@ -73,6 +73,9 @@ public:
     // Returns the left-Jacobian of SO(3).
     static ugl::Matrix3 left_jacobian(const ugl::Vector3 phi);
 
+    // Returns the inverse of the left-Jacobian of SO(3).
+    static ugl::Matrix3 left_jacobian_inv(const ugl::Vector3 phi);
+
 private:
     ugl::Matrix3 matrix_ = ugl::Matrix3::Identity();
 };
