@@ -64,7 +64,7 @@ public:
     // Maps SO(3) -> R^3.
     static auto log(const Rotation& R) -> ugl::Vector3;
 
-    // Maps R^3 -> so3(). Also known as ^-operator. Returns the skew-symmetric cross-product matrix.
+    // Maps R^3 -> so3(). Also known as 'wedge' or '^'-operator. Returns the skew-symmetric cross-product matrix.
     static auto hat(const ugl::Vector3& w) -> so3;
 
     // Maps so(3) -> R^3. Is the local inverse of the hat operator.
@@ -107,5 +107,17 @@ ugl::Vector3 operator*(const Rotation& lhs, const ugl::Vector3& rhs)
 
 // The 3D rotation group, often denoted SO(3). The group is a matrix Lie group.
 using SO3 = Rotation;
+
+inline
+ugl::Matrix3 skew(const ugl::Vector3& w)
+{
+    return SO3::hat(w);
+}
+
+inline
+ugl::Vector3 unskew(const ugl::Matrix3& w)
+{
+    return SO3::vee(w);
+}
 
 } // namespace ugl::lie
