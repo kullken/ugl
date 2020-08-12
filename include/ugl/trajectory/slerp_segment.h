@@ -70,7 +70,7 @@ public:
 
 private:
     double duration_ = 1;
-    math::UnitQuaternion q0_ = lie::identity<math::UnitQuaternion>();
+    math::UnitQuaternion q0_ = math::UnitQuaternion::Identity();
     math::UnitQuaternion q1_;
 };
 
