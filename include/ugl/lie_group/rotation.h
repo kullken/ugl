@@ -70,6 +70,9 @@ public:
     // Maps so(3) -> R^3. Is the local inverse of the hat operator.
     static auto vee(const so3& S) -> ugl::Vector3;
 
+    // Returns the left-Jacobian of SO(3).
+    static ugl::Matrix3 left_jacobian(const ugl::Vector3 phi);
+
 private:
     ugl::Matrix3 matrix_ = ugl::Matrix3::Identity();
 };

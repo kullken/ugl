@@ -10,8 +10,18 @@ namespace ugl::lie
 
 ExtendedPose ExtendedPose::exp(const Vector<9>& u)
 {
-    // TODO: Analytical solution
-    return ExtendedPose{math::exp(hat(u))};
+    const Vector3 phi = u.segment<3>(0);
+    const Vector3 nu  = u.segment<3>(3);
+    const Vector3 rho = u.segment<3>(6);
+    
+    constexpr double kTolerance = 1e-10;
+    const double phi_norm = phi.norm();
+    if (phi_norm < kTolerance) {
+        return ExtendedPose{SO3::Identity(), nu, rho};
+    }
+
+    const Matrix3 A = SO3::left_jacobian(phi);
+    return ExtendedPose{SO3::exp(phi), A * nu, A * rho};
 }
 
 Vector<9> ExtendedPose::log(const ExtendedPose& T)

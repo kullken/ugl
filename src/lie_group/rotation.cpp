@@ -40,4 +40,15 @@ ugl::Vector3 Rotation::vee(const so3& S)
     return ugl::Vector3{S(2,1)-S(1,2), S(0,2)-S(2,0), S(1,0)-S(0,1)} * 0.5;
 }
 
+ugl::Matrix3 Rotation::left_jacobian(const ugl::Vector3 phi)
+{
+    constexpr double kTolerance = 1e-10;
+    const double phi_norm = phi.norm();
+    if (phi_norm < kTolerance) {
+        return Matrix3::Identity() + 0.5 * hat(phi);
+    }
+    const Matrix3 W = hat(phi / phi_norm);
+    return Matrix3::Identity() + ((1 - std::cos(phi_norm)) / phi_norm) * W + ((phi_norm - std::sin(phi_norm)) / phi_norm) * W*W;
+}
+
 } // namespace ugl::lie
