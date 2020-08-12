@@ -22,8 +22,16 @@ Rotation Rotation::exp(const ugl::Vector3& w)
 
 ugl::Vector3 Rotation::log(const Rotation& R)
 {
-    // TODO: Find analytical solution here as well.
-    return vee(math::log(R.matrix()));
+    constexpr double kTolerance = 1e-10;
+    // TODO: Use std::clamp(*, -1.0, 1.0) on cos_theta to avoid potential NaN:s when using acos() later on?
+    const double cos_theta = 0.5 * R.matrix_.trace() - 0.5;
+    if ((cos_theta - 1.0) > -kTolerance) {
+        return vee(R.matrix_ - ugl::Matrix3::Identity());
+    } 
+    // TODO: Do we need another special case when theta is close to pi (i.e. cos_theta is close to -1)?
+
+    const double theta = std::acos(cos_theta);
+    return 0.5 * theta / std::sin(theta) * vee(R.matrix_ - R.matrix_.transpose());
 }
 
 so3 Rotation::hat(const ugl::Vector3& w)
