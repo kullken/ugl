@@ -10,8 +10,8 @@ namespace ugl::lie
 
 Pose Pose::exp(const Vector<6>& u)
 {
-    const Vector3 phi = u.segment<3>(0);
-    const Vector3 rho = u.segment<3>(3);
+    const Vector3& phi = u.segment<3>(0);
+    const Vector3& rho = u.segment<3>(3);
     
     constexpr double kTolerance = 1e-10;
     const double phi_norm = phi.norm();
@@ -39,10 +39,8 @@ Vector<6> Pose::log(const Pose& T)
     }
 
     const Matrix3 Jinv = SO3::left_jacobian_inv(phi);
-    // TODO: Skip temp. variable rho?
-    const Vector3 rho = Jinv * p;
     Vector<6> result;
-    result << phi, rho;
+    result << phi, Jinv * p;
     return result;
 }
 

@@ -10,9 +10,9 @@ namespace ugl::lie
 
 ExtendedPose ExtendedPose::exp(const Vector<9>& u)
 {
-    const Vector3 phi = u.segment<3>(0);
-    const Vector3 nu  = u.segment<3>(3);
-    const Vector3 rho = u.segment<3>(6);
+    const Vector3& phi = u.segment<3>(0);
+    const Vector3& nu  = u.segment<3>(3);
+    const Vector3& rho = u.segment<3>(6);
     
     constexpr double kTolerance = 1e-10;
     const double phi_norm = phi.norm();
@@ -41,11 +41,8 @@ Vector<9> ExtendedPose::log(const ExtendedPose& T)
     }
 
     const Matrix3 Jinv = SO3::left_jacobian_inv(phi);
-    // TODO: Skip temp. variables nu and rho?
-    const Vector3 nu  = Jinv * v;
-    const Vector3 rho = Jinv * p;
     Vector<9> result;
-    result << phi, nu, rho;
+    result << phi, Jinv * v, Jinv * p;
     return result;
 }
 
@@ -68,8 +65,8 @@ Vector<9> ExtendedPose::vee(const se2_3& U)
 Matrix<9,9> ExtendedPose::adjoint(const ExtendedPose& T)
 {
     const Matrix3& R = T.R_.matrix();
-    const Vector3&  v = T.vel_;
-    const Vector3&  p = T.pos_;
+    const Vector3& v = T.vel_;
+    const Vector3& p = T.pos_;
 
     Matrix<9,9> Adj = Matrix<9,9>::Zero();
     Adj.block<3,3>(0,0) = R;
