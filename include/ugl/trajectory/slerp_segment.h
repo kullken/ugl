@@ -9,8 +9,6 @@
 
 #include "ugl/trajectory/trajectory.h"
 
-#include "ugl/lie_group/utility.h"
-
 namespace ugl::trajectory
 {
 
