@@ -1,5 +1,7 @@
 #pragma once
 
+#include <ostream>
+
 #include "ugl/math/vector.h"
 #include "ugl/math/matrix.h"
 #include "ugl/math/quaternion.h"
@@ -88,18 +90,6 @@ Rotation operator*(Rotation lhs, const Rotation& rhs)
 }
 
 inline
-ugl::Matrix3 operator*(const Rotation& lhs, const ugl::Matrix3& rhs)
-{
-    return lhs.matrix() * rhs;
-}
-
-inline
-ugl::Matrix3 operator*(const ugl::Matrix3& lhs, const Rotation& rhs)
-{
-    return lhs * rhs.matrix();
-}
-
-inline
 ugl::Vector3 operator*(const Rotation& lhs, const ugl::Vector3& rhs)
 {
     return lhs.matrix() * rhs;
@@ -118,6 +108,12 @@ inline
 ugl::Vector3 unskew(const ugl::Matrix3& w)
 {
     return SO3::vee(w);
+}
+
+inline
+std::ostream& operator<<(std::ostream& os, const Rotation& R)
+{
+    return os << R.matrix();
 }
 
 } // namespace ugl::lie

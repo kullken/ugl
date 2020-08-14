@@ -105,18 +105,6 @@ ExtendedPose operator*(ExtendedPose lhs, const ExtendedPose& rhs)
     return lhs *= rhs;
 }
 
-inline
-Matrix<5,5> operator*(const ExtendedPose& lhs, const Matrix<5,5>& rhs)
-{
-    return lhs.matrix() * rhs;
-}
-
-inline
-Matrix<5,5> operator*(const Matrix<5,5>& lhs, const ExtendedPose& rhs)
-{
-    return lhs * rhs.matrix();
-}
-
 // An alias to make math nerds happy.
 using SE2_3 = ExtendedPose;
 

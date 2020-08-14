@@ -92,18 +92,6 @@ Pose operator*(Pose lhs, const Pose& rhs)
     return lhs *= rhs;
 }
 
-inline
-Matrix<4,4> operator*(const Pose& lhs, const Matrix<4,4>& rhs)
-{
-    return lhs.matrix() * rhs;
-}
-
-inline
-Matrix<4,4> operator*(const Matrix<4,4>& lhs, const Pose& rhs)
-{
-    return lhs * rhs.matrix();
-}
-
 // An alias to make math nerds happy.
 using SE_3 = Pose;
 
