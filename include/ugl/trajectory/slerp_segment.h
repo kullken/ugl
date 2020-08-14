@@ -7,6 +7,8 @@
 #include "ugl/math/quaternion.h"
 #include "ugl/math/slerp.h"
 
+#include "ugl/lie_group/rotation.h"
+
 #include "ugl/trajectory/trajectory.h"
 
 namespace ugl::trajectory
@@ -51,9 +53,9 @@ public:
     const ugl::UnitQuaternion& start() const { return q0_; }
     const ugl::UnitQuaternion& end() const { return q1_; }
 
-    math::Rotation rotation(double t) const override
+    lie::Rotation rotation(double t) const override
     {
-        return math::Rotation(quat(t));
+        return lie::Rotation{quat(t)};
     }
 
     math::UnitQuaternion quat(double t) const override

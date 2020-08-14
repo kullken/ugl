@@ -6,6 +6,8 @@
 #include "ugl/math/vector.h"
 #include "ugl/math/matrix.h"
 
+#include "ugl/lie_group/rotation.h"
+
 #include "ugl/trajectory/slerp_segment.h"
 #include "ugl/trajectory/trajectory.h"
 
@@ -36,7 +38,7 @@ public:
     double duration() const override { return duration_; }
     const auto& segments() const { return segments_; }
 
-    math::Rotation rotation(double t) const override;
+    lie::Rotation rotation(double t) const override;
     math::UnitQuaternion quat(double t) const override;
     math::Vector3 ang_vel(double t) const override;
 

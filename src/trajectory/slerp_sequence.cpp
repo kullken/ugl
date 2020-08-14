@@ -7,6 +7,8 @@
 #include "ugl/math/vector.h"
 #include "ugl/math/matrix.h"
 
+#include "ugl/lie_group/rotation.h"
+
 #include "ugl/trajectory/slerp_segment.h"
 
 namespace ugl::trajectory
@@ -22,7 +24,7 @@ SlerpSequence::SlerpSequence(const std::vector<SlerpSegment>& segments)
     // TODO?: Assert that all segments are connected continously up to the x(?):th derivative.
 }
 
-math::Rotation SlerpSequence::rotation(double t) const
+lie::Rotation SlerpSequence::rotation(double t) const
 {
     const Segment& segment = get_segment_at(t);
     return segment.rotation(t - segment.time_offset);
