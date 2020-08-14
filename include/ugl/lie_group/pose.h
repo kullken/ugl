@@ -38,6 +38,10 @@ public:
         return matrix;
     }
 
+    void set_rotation(const Rotation& R) { R_ = R; }
+
+    void set_position(const Vector3& pos) { pos_ = pos; }
+
     const Rotation& rotation() const { return R_; }
 
     const Vector3& position() const { return pos_; }
