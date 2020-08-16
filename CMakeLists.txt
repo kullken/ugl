@@ -11,7 +11,7 @@ target_compile_options(project_warnings
   INTERFACE
     -Wall -Wextra -Wpedantic
     -Wshadow
-    -Wnon-virtual-dtor 
+    -Wnon-virtual-dtor
     -Wcast-align
     -Wunused
     -Woverloaded-virtual
@@ -65,6 +65,7 @@ add_library(ugl::lie_group ALIAS lie_group)
 target_sources(lie_group
   PRIVATE
     src/lie_group/rotation.cpp
+    src/lie_group/rotation2d.cpp
     src/lie_group/pose.cpp
     src/lie_group/extended_pose.cpp
 )
