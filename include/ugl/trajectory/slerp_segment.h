@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_TRAJECTORY_SLERP_SEGMENT_H
+#define UGL_TRAJECTORY_SLERP_SEGMENT_H
 
 #include <cassert>
 #include <memory>
@@ -74,4 +75,6 @@ private:
     math::UnitQuaternion q1_;
 };
 
-}
+} // namespace ugl::trajectory
+
+#endif // UGL_TRAJECTORY_SLERP_SEGMENT_H

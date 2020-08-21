@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_MATH_MATRIX_H
+#define UGL_MATH_MATRIX_H
 
 #include <Eigen/Core>
 #include <Eigen/Geometry>
@@ -33,3 +34,5 @@ using Matrix3 = math::Matrix3;
 using Rotation = math::Rotation;
 
 } // namespace ugl
+
+#endif // UGL_MATH_MATRIX_H

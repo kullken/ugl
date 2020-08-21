@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_TRAJECTORY_SLERP_SEQUENCE_H
+#define UGL_TRAJECTORY_SLERP_SEQUENCE_H
 
 #include <memory>
 #include <vector>
@@ -20,7 +21,7 @@ class SlerpSequence : public AngularTrajectory
     {
     public:
         double time_offset;
-        Segment(const SlerpSegment& segment, double offset) 
+        Segment(const SlerpSegment& segment, double offset)
             : SlerpSegment(segment)
             , time_offset(offset) {}
     };
@@ -50,4 +51,6 @@ private:
     std::vector<Segment> segments_;
 };
 
-}
+} // namespace ugl::trajectory
+
+#endif // UGL_TRAJECTORY_SLERP_SEQUENCE_H

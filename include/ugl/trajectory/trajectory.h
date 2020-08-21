@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_TRAJECTORY_TRAJECTORY_H
+#define UGL_TRAJECTORY_TRAJECTORY_H
 
 #include <memory>
 
@@ -20,11 +21,11 @@ public:
 
     virtual double duration() const = 0;
 
-    // Returns the start position of the trajectory. Functionally equivalent 
+    // Returns the start position of the trajectory. Functionally equivalent
     // to calling pos(0), but might be faster depending on implementation.
     virtual math::Vector3 start() const = 0;
 
-    // Returns the end position of the trajectory. Functionally equivalent 
+    // Returns the end position of the trajectory. Functionally equivalent
     // to calling pos(duration()), but might be faster depending on implementation.
     virtual math::Vector3 end() const = 0;
 
@@ -80,4 +81,6 @@ private:
     std::unique_ptr<const AngularTrajectory> angular_trajectory_ = nullptr;
 };
 
-}
+} // namespace ugl::trajectory
+
+#endif // UGL_TRAJECTORY_TRAJECTORY_H

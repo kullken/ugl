@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_TRAJECTORY_BEZIER_SEQUENCE_H
+#define UGL_TRAJECTORY_BEZIER_SEQUENCE_H
 
 #include <cassert>
 #include <memory>
@@ -20,7 +21,7 @@ class BezierSequence : public LinearTrajectory
     {
     public:
         double time_offset;
-        Segment(const Bezier<degree>& bezier, double offset) 
+        Segment(const Bezier<degree>& bezier, double offset)
             : Bezier<degree>(bezier)
             , time_offset(offset) {}
     };
@@ -80,7 +81,7 @@ private:
             }
         }
 
-        throw std::logic_error("Could not access trajectory segment."); 
+        throw std::logic_error("Could not access trajectory segment.");
     }
 
 private:
@@ -88,4 +89,6 @@ private:
     std::vector<Segment> segments_;
 };
 
-}
+} // namespace ugl::trajectory
+
+#endif // UGL_TRAJECTORY_BEZIER_SEQUENCE_H

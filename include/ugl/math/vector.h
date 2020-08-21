@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_MATH_VECTOR_H
+#define UGL_MATH_VECTOR_H
 
 #include <Eigen/Core>
 #include <Eigen/Geometry>
@@ -21,3 +22,5 @@ using Vector = math::Vector<rows>;
 using Vector3 = math::Vector3;
 
 } // namespace ugl
+
+#endif // UGL_MATH_VECTOR_H

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_TRAJECTORY_BEZIER_H
+#define UGL_TRAJECTORY_BEZIER_H
 
 #include <cassert>
 #include <cmath>
@@ -118,8 +119,10 @@ template<int degree>
 std::pair<Bezier<degree>, Bezier<degree>> split(Bezier<degree> bezier, double t);
 
 /// Creates a Bézier curve from a duration and position, velocity and acceleration at start and end.
-Bezier<5> createPenticBezier(double duration, 
-        ugl::Vector3 pos0, ugl::Vector3 vel0, ugl::Vector3 acc0, 
+Bezier<5> createPenticBezier(double duration,
+        ugl::Vector3 pos0, ugl::Vector3 vel0, ugl::Vector3 acc0,
         ugl::Vector3 pos1, ugl::Vector3 vel1, ugl::Vector3 acc1);
 
 } // namespace ugl::trajectory
+
+#endif // UGL_TRAJECTORY_BEZIER_H

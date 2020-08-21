@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_LIE_ROTATION2D_H
+#define UGL_LIE_ROTATION2D_H
 
 #include <ostream>
 
@@ -93,3 +94,5 @@ std::ostream& operator<<(std::ostream& os, const Rotation2D& R)
 }
 
 } // namespace ugl::lie
+
+#endif // UGL_LIE_ROTATION2D_H

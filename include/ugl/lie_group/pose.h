@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_LIE_POSE_H
+#define UGL_LIE_POSE_H
 
 #include "ugl/math/vector.h"
 #include "ugl/math/matrix.h"
@@ -47,7 +48,7 @@ public:
     const Vector3& position() const { return pos_; }
 
     // Group identity element.
-    static Pose Identity() 
+    static Pose Identity()
     {
         return Pose{};
     }
@@ -96,3 +97,5 @@ Pose operator*(Pose lhs, const Pose& rhs)
 using SE_3 = Pose;
 
 } // namespace ugl::lie
+
+#endif // UGL_LIE_POSE_H

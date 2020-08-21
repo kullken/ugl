@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_MATH_QUATERNION_H
+#define UGL_MATH_QUATERNION_H
 
 #include <Eigen/Core>
 #include <Eigen/Geometry>
@@ -33,3 +34,5 @@ using Quaternion = math::Quaternion;
 using UnitQuaternion = math::UnitQuaternion;
 
 } // namespace ugl
+
+#endif // UGL_MATH_QUATERNION_H

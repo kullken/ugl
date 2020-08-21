@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_RANDOM_NORMAL_DISTRIBUTION_H
+#define UGL_RANDOM_NORMAL_DISTRIBUTION_H
 
 #include <Eigen/Eigenvalues>
 
@@ -91,3 +92,5 @@ typename NormalDistribution<size>::VectorType NormalDistribution<size>::sample_w
 }
 
 } // namespace ugl::random
+
+#endif // UGL_RANDOM_NORMAL_DISTRIBUTION_H

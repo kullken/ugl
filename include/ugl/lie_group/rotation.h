@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_LIE_ROTATION_H
+#define UGL_LIE_ROTATION_H
 
 #include <ostream>
 
@@ -55,9 +56,9 @@ public:
     }
 
     // Group identity element.
-    static Rotation Identity() 
+    static Rotation Identity()
     {
-        return Rotation{}; 
+        return Rotation{};
     }
 
     // Maps R^3 -> SO(3).
@@ -117,3 +118,5 @@ std::ostream& operator<<(std::ostream& os, const Rotation& R)
 }
 
 } // namespace ugl::lie
+
+#endif // UGL_LIE_ROTATION_H

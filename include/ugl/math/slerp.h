@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_MATH_SLERP_H
+#define UGL_MATH_SLERP_H
 
 #include <cassert>
 
@@ -13,3 +14,5 @@ namespace ugl::math
 UnitQuaternion slerp(const UnitQuaternion& q0, const UnitQuaternion& q1, double t);
 
 } // namespace ugl::math
+
+#endif // UGL_MATH_SLERP_H

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UGL_LIE_EXTENDED_POSE_H
+#define UGL_LIE_EXTENDED_POSE_H
 
 #include "ugl/math/vector.h"
 #include "ugl/math/matrix.h"
@@ -54,7 +55,7 @@ public:
     const Vector3& position() const { return pos_; }
 
     // Group identity element.
-    static ExtendedPose Identity() 
+    static ExtendedPose Identity()
     {
         return ExtendedPose{};
     }
@@ -109,3 +110,5 @@ ExtendedPose operator*(ExtendedPose lhs, const ExtendedPose& rhs)
 using SE2_3 = ExtendedPose;
 
 } // namespace ugl::lie
+
+#endif // UGL_LIE_EXTENDED_POSE_H
