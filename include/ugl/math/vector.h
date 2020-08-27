@@ -12,12 +12,18 @@ namespace math
 template <int rows>
 using Vector = Eigen::Matrix<double, rows, 1, Eigen::DontAlign>;
 
+template <int cols>
+using RowVector = Eigen::Matrix<double, 1, cols, Eigen::DontAlign|Eigen::RowMajor>;
+
 using Vector3 = Vector<3>;
 
 } // namespace math
 
 template <int rows>
 using Vector = math::Vector<rows>;
+
+template <int cols>
+using RowVector = math::RowVector<cols>;
 
 using Vector3 = math::Vector3;
 
