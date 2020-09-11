@@ -12,7 +12,7 @@ Pose Pose::exp(const Vector<6>& u)
 {
     const Vector3& phi = u.segment<3>(0);
     const Vector3& rho = u.segment<3>(3);
-    
+
     constexpr double kTolerance = 1e-10;
     const double phi_norm = phi.norm();
     if (phi_norm < kTolerance) {
@@ -27,7 +27,7 @@ Vector<6> Pose::log(const Pose& T)
 {
     const Vector3 phi = SO3::log(T.R_);
     const Vector3& p = T.pos_;
-    
+
     constexpr double kTolerance = 1e-10;
     const double phi_norm = phi.norm();
     // TODO: Pre-allocate result variable since it is used in both branches?
@@ -57,6 +57,19 @@ Vector<6> Pose::vee(const se_3& U)
     Vector<6> u;
     u << SO3::vee(U.block<3,3>(0,0)), U.block<3,1>(0,3);
     return u;
+}
+
+Matrix<6,6> Pose::adjoint(const Pose& T)
+{
+    const Matrix3& R = T.R_.matrix();
+    const Vector3& p = T.pos_;
+
+    Matrix<6,6> Adj = Matrix<6,6>::Zero();
+    Adj.block<3,3>(0,0) = R;
+    Adj.block<3,3>(3,3) = R;
+    Adj.block<3,3>(3,0) = SO3::hat(p) * R;
+
+    return Adj;
 }
 
 } // namespace ugl::lie

@@ -80,6 +80,9 @@ public:
     // Maps se2(3) -> R^9. Is the local inverse of the hat operator.
     static Vector<6> vee(const se_3& U);
 
+    // Returns the adjoint matrix of a pose.
+    static Matrix<6,6> adjoint(const Pose& T);
+
 private:
     // Rotation
     Rotation R_ = Rotation::Identity();
