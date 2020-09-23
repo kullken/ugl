@@ -3,6 +3,7 @@
 
 #include "ugl/math/vector.h"
 #include "ugl/math/matrix.h"
+#include "ugl/math/quaternion.h"
 
 #include "ugl/lie_group/rotation.h"
 
@@ -27,6 +28,12 @@ public:
 
     Pose(const Rotation& rotation, const Vector3& position)
         : R_(rotation)
+        , pos_(position)
+    {
+    }
+
+    Pose(const UnitQuaternion& quaternion, const Vector3& position)
+        : R_(quaternion)
         , pos_(position)
     {
     }

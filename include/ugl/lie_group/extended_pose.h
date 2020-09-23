@@ -3,6 +3,7 @@
 
 #include "ugl/math/vector.h"
 #include "ugl/math/matrix.h"
+#include "ugl/math/quaternion.h"
 
 #include "ugl/lie_group/rotation.h"
 
@@ -28,6 +29,13 @@ public:
 
     ExtendedPose(const Rotation& rotation, const Vector3& velocity, const Vector3& position)
         : R_(rotation)
+        , vel_(velocity)
+        , pos_(position)
+    {
+    }
+
+    ExtendedPose(const UnitQuaternion& quaternion, const Vector3& velocity, const Vector3& position)
+        : R_(quaternion)
         , vel_(velocity)
         , pos_(position)
     {
