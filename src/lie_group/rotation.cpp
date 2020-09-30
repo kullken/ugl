@@ -27,7 +27,7 @@ ugl::Vector3 Rotation::log(const Rotation& R)
     const double cos_theta = 0.5 * R.matrix_.trace() - 0.5;
     if ((cos_theta - 1.0) > -kTolerance) {
         return vee(R.matrix_ - ugl::Matrix3::Identity());
-    } 
+    }
     // TODO: Do we need another special case when theta is close to pi (i.e. cos_theta is close to -1)?
 
     const double theta = std::acos(cos_theta);
@@ -48,7 +48,7 @@ ugl::Vector3 Rotation::vee(const so3& S)
     return ugl::Vector3{S(2,1)-S(1,2), S(0,2)-S(2,0), S(1,0)-S(0,1)} * 0.5;
 }
 
-ugl::Matrix3 Rotation::left_jacobian(const ugl::Vector3 phi)
+ugl::Matrix3 Rotation::left_jacobian(const ugl::Vector3& phi)
 {
     constexpr double kTolerance = 1e-10;
     const double phi_norm = phi.norm();
@@ -59,7 +59,7 @@ ugl::Matrix3 Rotation::left_jacobian(const ugl::Vector3 phi)
     return Matrix3::Identity() + ((1 - std::cos(phi_norm)) / phi_norm) * W + ((phi_norm - std::sin(phi_norm)) / phi_norm) * W*W;
 }
 
-ugl::Matrix3 Rotation::left_jacobian_inv(const ugl::Vector3 phi)
+ugl::Matrix3 Rotation::left_jacobian_inv(const ugl::Vector3& phi)
 {
     constexpr double kTolerance = 1e-10;
     const double phi_norm = phi.norm();
@@ -69,6 +69,16 @@ ugl::Matrix3 Rotation::left_jacobian_inv(const ugl::Vector3 phi)
     const Matrix3 W = hat(phi / phi_norm);
     const double phi_norm_half = phi_norm / 2;
     return Matrix3::Identity() - (phi_norm_half) * W + (1 - ((phi_norm_half) / std::tan(phi_norm_half))) * W*W;
+}
+
+ugl::Matrix3 Rotation::right_jacobian(const ugl::Vector3& phi)
+{
+    return left_jacobian(-phi);
+}
+
+ugl::Matrix3 Rotation::right_jacobian_inv(const ugl::Vector3& phi)
+{
+    return left_jacobian_inv(-phi);
 }
 
 } // namespace ugl::lie

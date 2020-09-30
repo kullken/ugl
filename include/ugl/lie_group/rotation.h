@@ -73,11 +73,25 @@ public:
     // Maps so(3) -> R^3. Is the local inverse of the hat operator.
     static auto vee(const so3& S) -> ugl::Vector3;
 
-    // Returns the left-Jacobian of SO(3).
-    static ugl::Matrix3 left_jacobian(const ugl::Vector3 phi);
+    /// @brief Calculates the left-Jacobian of SO(3) evaluated at a point phi.
+    /// @param phi the evaluation point
+    /// @return The left-Jacobian matrix
+    static ugl::Matrix3 left_jacobian(const ugl::Vector3& phi);
 
-    // Returns the inverse of the left-Jacobian of SO(3).
-    static ugl::Matrix3 left_jacobian_inv(const ugl::Vector3 phi);
+    /// @brief Calculates the inverse left-Jacobian of SO(3) evaluated at a point phi.
+    /// @param phi the evaluation point
+    /// @return The inverse left-Jacobian matrix
+    static ugl::Matrix3 left_jacobian_inv(const ugl::Vector3& phi);
+
+    /// @brief Calculates the right-Jacobian of SE(3) evaluated at a point phi.
+    /// @param phi the evaluation point
+    /// @return The right-Jacobian matrix
+    static ugl::Matrix3 right_jacobian(const ugl::Vector3& phi);
+
+    /// @brief Calculates the inverse right-Jacobian of SE(3) evaluated at a point phi.
+    /// @param phi the evaluation point
+    /// @return The inverse right-Jacobian matrix
+    static ugl::Matrix3 right_jacobian_inv(const ugl::Vector3& phi);
 
 private:
     ugl::Matrix3 matrix_ = ugl::Matrix3::Identity();
