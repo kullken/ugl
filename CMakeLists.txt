@@ -85,7 +85,6 @@ target_link_libraries(lie_group
   PRIVATE
     project_options
     project_warnings
-    Eigen3::Eigen
 )
 
 #########################
