@@ -4,6 +4,7 @@
 #include "ugl/math/matrix.h"
 
 #include "ugl/lie_group/rotation.h"
+#include "jacobian_helper.h"
 
 namespace ugl::lie
 {
@@ -70,6 +71,46 @@ Matrix<6,6> Pose::adjoint(const Pose& T)
     Adj.block<3,3>(3,0) = SO3::hat(p) * R;
 
     return Adj;
+}
+
+Matrix<6,6> Pose::left_jacobian(const Vector<6>& tau)
+{
+    const Vector3 phi = tau.segment<3>(0);
+    const Vector3 rho = tau.segment<3>(3);
+    const Matrix3 Q_rho = internal::jac_Q_block(phi, rho);
+    const Matrix3 J_SO3 = SO3::left_jacobian(phi);
+
+    Matrix<6,6> J = Matrix<6,6>::Zero();
+    J.block<3,3>(0,0) = J_SO3;
+    J.block<3,3>(3,3) = J_SO3;
+    J.block<3,3>(3,0) = Q_rho;
+
+    return J;
+}
+
+Matrix<6,6> Pose::left_jacobian_inv(const Vector<6>& tau)
+{
+    const Vector3 phi = tau.segment<3>(0);
+    const Vector3 rho = tau.segment<3>(3);
+    const Matrix3 Q_rho = internal::jac_Q_block(phi, rho);
+    const Matrix3 J_SO3_inv = SO3::left_jacobian_inv(phi);
+
+    Matrix<6,6> J_inv = Matrix<6,6>::Zero();
+    J_inv.block<3,3>(0,0) = J_SO3_inv;
+    J_inv.block<3,3>(3,3) = J_SO3_inv;
+    J_inv.block<3,3>(3,0) = -J_SO3_inv * Q_rho * J_SO3_inv;
+
+    return J_inv;
+}
+
+Matrix<6,6> Pose::right_jacobian(const Vector<6>& tau)
+{
+    return left_jacobian(-tau);
+}
+
+Matrix<6,6> Pose::right_jacobian_inv(const Vector<6>& tau)
+{
+    return left_jacobian_inv(-tau);
 }
 
 } // namespace ugl::lie

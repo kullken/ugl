@@ -68,12 +68,15 @@ target_sources(lie_group
     src/lie_group/rotation2d.cpp
     src/lie_group/pose.cpp
     src/lie_group/extended_pose.cpp
+    src/lie_group/jacobian_helper.cpp
 )
 
 target_include_directories(lie_group
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
+  PRIVATE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/lie_group>
 )
 
 target_link_libraries(lie_group

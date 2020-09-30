@@ -99,6 +99,26 @@ public:
     // Returns the adjoint matrix of an extended pose.
     static Matrix<9,9> adjoint(const ExtendedPose& T);
 
+    /// @brief Calculates the left-Jacobian of SE2(3) evaluated at a point tau.
+    /// @param tau the evaluation point
+    /// @return The left-Jacobian matrix
+    static Matrix<9,9> left_jacobian(const Vector<9>& tau);
+
+    /// @brief Calculates the inverse left-Jacobian of SE2(3) evaluated at a point tau.
+    /// @param tau the evaluation point
+    /// @return The inverse left-Jacobian matrix
+    static Matrix<9,9> left_jacobian_inv(const Vector<9>& tau);
+
+    /// @brief Calculates the right-Jacobian of SE2(3) evaluated at a point tau.
+    /// @param tau the evaluation point
+    /// @return The right-Jacobian matrix
+    static Matrix<9,9> right_jacobian(const Vector<9>& tau);
+
+    /// @brief Calculates the inverse right-Jacobian of SE2(3) evaluated at a point tau.
+    /// @param tau the evaluation point
+    /// @return The inverse right-Jacobian matrix
+    static Matrix<9,9> right_jacobian_inv(const Vector<9>& tau);
+
 private:
     // Rotation
     Rotation R_ = Rotation::Identity();
