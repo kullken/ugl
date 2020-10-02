@@ -8,6 +8,8 @@
 #include "ugl/math/quaternion.h"
 
 #include "ugl/lie_group/rotation.h"
+#include "ugl/lie_group/pose.h"
+#include "ugl/lie_group/extended_pose.h"
 
 namespace ugl::trajectory
 {
@@ -67,6 +69,9 @@ public:
     }
 
     double duration() const { return std::min(linear_trajectory_->duration(), angular_trajectory_->duration()); }
+
+    lie::Pose get_pose(double t) const;
+    lie::ExtendedPose get_extended_pose(double t) const;
 
     math::Vector3 get_position(double t) const { return linear_trajectory_->pos(t); }
     math::Vector3 get_velocity(double t) const { return linear_trajectory_->vel(t); }

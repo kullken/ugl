@@ -1,5 +1,8 @@
 #include "ugl/trajectory/trajectory.h"
 
+#include "ugl/lie_group/pose.h"
+#include "ugl/lie_group/extended_pose.h"
+
 namespace ugl::trajectory
 {
 
@@ -16,4 +19,14 @@ Trajectory& Trajectory::operator=(const Trajectory& other)
     return *this;
 }
 
+lie::Pose Trajectory::get_pose(double t) const
+{
+    return lie::Pose{get_rotation(t), get_position(t)};
 }
+
+lie::ExtendedPose Trajectory::get_extended_pose(double t) const
+{
+    return lie::ExtendedPose{get_rotation(t), get_velocity(t), get_position(t)};
+}
+
+} // namespace ugl::trajectory
