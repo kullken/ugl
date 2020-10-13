@@ -16,15 +16,15 @@ using MatrixD = Matrix<Eigen::Dynamic, Eigen::Dynamic>;
 
 using Matrix3 = Matrix<3, 3>;
 
-Matrix<3, 3> exp(const Matrix<3, 3> &m);
-Matrix<4, 4> exp(const Matrix<4, 4> &m);
-Matrix<5, 5> exp(const Matrix<5, 5> &m);
-Matrix<9, 9> exp(const Matrix<9, 9> &m);
+/// @brief Compute the matrix exponential.
+/// @param m matrix whose exponential is to be computed
+/// @return The matrix exponential of m.
+MatrixD exp(const MatrixD& m);
 
-Matrix<3, 3> log(const Matrix<3, 3> &m);
-Matrix<4, 4> log(const Matrix<4, 4> &m);
-Matrix<5, 5> log(const Matrix<5, 5> &m);
-Matrix<9, 9> log(const Matrix<9, 9> &m);
+/// @brief Compute the matrix logarithm.
+/// @param m matrix whose logarithm is to be computed
+/// @return The matrix logarithm of m.
+MatrixD log(const MatrixD& m);
 
 } // namespace math
 
