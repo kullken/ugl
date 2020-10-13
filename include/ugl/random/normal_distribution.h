@@ -1,13 +1,13 @@
 #ifndef UGL_RANDOM_NORMAL_DISTRIBUTION_H
 #define UGL_RANDOM_NORMAL_DISTRIBUTION_H
 
-#include <Eigen/Eigenvalues>
-
 #include "ugl/math/vector.h"
 #include "ugl/math/matrix.h"
 
 namespace ugl::random
 {
+
+ugl::MatrixD create_transform(const ugl::MatrixD& covariance);
 
 template<int size>
 class NormalDistribution
@@ -46,12 +46,6 @@ public:
 
 private:
     static VectorType sample_white_noise();
-
-    static MatrixType create_transform(const MatrixType& covar)
-    {
-        Eigen::SelfAdjointEigenSolver<Eigen::MatrixXd> eigenSolver(covar);
-        return eigenSolver.eigenvectors() * eigenSolver.eigenvalues().cwiseSqrt().asDiagonal();
-    }
 
 private:
     VectorType mean_ = VectorType::Zero();

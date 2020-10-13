@@ -3,10 +3,18 @@
 #include <cmath>
 #include <random>
 
+#include <Eigen/Eigenvalues>
+
 #include "random_engine.h"
 
 namespace ugl::random
 {
+
+ugl::MatrixD create_transform(const ugl::MatrixD& covariance)
+{
+    Eigen::SelfAdjointEigenSolver<ugl::MatrixD> eigen_solver(covariance);
+    return eigen_solver.eigenvectors() * eigen_solver.eigenvalues().cwiseSqrt().asDiagonal();
+}
 
 NormalDistribution<1>::NormalDistribution(double mean, double variance)
     : mean_(mean)
