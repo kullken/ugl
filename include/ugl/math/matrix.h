@@ -12,6 +12,8 @@ namespace math
 template <int rows, int cols>
 using Matrix = Eigen::Matrix<double, rows, cols, Eigen::DontAlign | (rows==1 ? Eigen::RowMajor : 0)>;
 
+using MatrixD = Matrix<Eigen::Dynamic, Eigen::Dynamic>;
+
 using Matrix3 = Matrix<3, 3>;
 
 Matrix<3, 3> exp(const Matrix<3, 3> &m);
@@ -28,6 +30,8 @@ Matrix<9, 9> log(const Matrix<9, 9> &m);
 
 template <int rows, int cols>
 using Matrix = math::Matrix<rows, cols>;
+
+using MatrixD = math::MatrixD;
 
 using Matrix3 = math::Matrix3;
 
