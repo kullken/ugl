@@ -23,14 +23,25 @@ Rotation Rotation::exp(const ugl::Vector3& w)
 ugl::Vector3 Rotation::log(const Rotation& R)
 {
     constexpr double kTolerance = 1e-10;
-    // TODO: Use std::clamp(*, -1.0, 1.0) on cos_theta to avoid potential NaN:s when using acos() later on?
-    const double cos_theta = 0.5 * R.matrix_.trace() - 0.5;
-    if ((cos_theta - 1.0) > -kTolerance) {
+    const double trace = R.matrix_.trace();
+    if (trace + 1.0 < kTolerance) {
+        const double R00 = R.matrix_(0,0);
+        const double R11 = R.matrix_(1,1);
+        const double R22 = R.matrix_(2,2);
+        if (std::abs(R22 + 1.0) > kTolerance) {
+            return M_PI / std::sqrt(2.0 * (R22 + 1.0)) * (R.matrix_.col(2) + ugl::Vector3::UnitZ());
+        }
+        else if (std::abs(R11 + 1.0) > kTolerance) {
+            return M_PI / std::sqrt(2.0 * (R11 + 1.0)) * (R.matrix_.col(1) + ugl::Vector3::UnitY());
+        }
+        else /* if(std::abs(R00 + 1.0) > kTolerance) */ {
+            return M_PI / std::sqrt(2.0 * (R00 + 1.0)) * (R.matrix_.col(0) + ugl::Vector3::UnitX());
+        }
+    }
+    const double theta = std::acos(0.5 * trace - 0.5);
+    if (theta < kTolerance) {
         return vee(R.matrix_ - ugl::Matrix3::Identity());
     }
-    // TODO: Do we need another special case when theta is close to pi (i.e. cos_theta is close to -1)?
-
-    const double theta = std::acos(cos_theta);
     return 0.5 * theta / std::sin(theta) * vee(R.matrix_ - R.matrix_.transpose());
 }
 
