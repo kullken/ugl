@@ -129,6 +129,7 @@ target_sources(random
     src/random/random_engine.cpp
     src/random/seed.cpp
     src/random/normal_distribution.cpp
+    src/random/uniform_distribution.cpp
 )
 
 target_include_directories(random
