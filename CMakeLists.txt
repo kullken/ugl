@@ -100,6 +100,7 @@ target_sources(trajectory
     src/trajectory/bezier.cpp
     src/trajectory/bezier_sequence.cpp
     src/trajectory/slerp_sequence.cpp
+    src/trajectory/circle_arc.cpp
 )
 
 target_include_directories(trajectory
