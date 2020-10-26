@@ -9,6 +9,11 @@
 namespace ugl::lie
 {
 
+Vector3 Pose::transform(const Vector3& vec) const
+{
+    return R_*vec + pos_;
+}
+
 Pose Pose::exp(const Vector<6>& u)
 {
     const Vector3& phi = u.segment<3>(0);

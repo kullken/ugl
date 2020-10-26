@@ -75,6 +75,11 @@ public:
         return *this;
     }
 
+    /// @brief Transforms a vector from the local frame to the global frame.
+    /// @param vec the vector in the local frame
+    /// @return The vector in the global frame.
+    Vector3 transform(const Vector3& vec) const;
+
     // Maps R^6 -> SE(3).
     static Pose exp(const Vector<6>& u);
 
