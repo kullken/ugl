@@ -18,6 +18,13 @@ using se_3 = ugl::Matrix<4,4>;
 class Pose
 {
 public:
+    /// @brief Degrees of freedom of the Lie group.
+    static constexpr int DoF = 6;
+
+    using VectorType = ugl::Vector<DoF>;
+    using TangentType = se_3;
+
+public:
     Pose() = default;
 
     explicit Pose(const Matrix<4,4>& matrix)

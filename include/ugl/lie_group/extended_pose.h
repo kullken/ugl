@@ -18,6 +18,13 @@ using se2_3 = ugl::Matrix<5,5>;
 class ExtendedPose
 {
 public:
+    /// @brief Degrees of freedom of the Lie group.
+    static constexpr int DoF = 9;
+
+    using VectorType = ugl::Vector<DoF>;
+    using TangentType = se2_3;
+
+public:
     ExtendedPose() = default;
 
     explicit ExtendedPose(const Matrix<5,5>& matrix)

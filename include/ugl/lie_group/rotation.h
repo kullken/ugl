@@ -18,6 +18,13 @@ using so3 = ugl::Matrix3;
 class Rotation
 {
 public:
+    /// @brief Degrees of freedom of the Lie group.
+    static constexpr int DoF = 3;
+
+    using VectorType = ugl::Vector<DoF>;
+    using TangentType = so3;
+
+public:
     Rotation() = default;
 
     explicit Rotation(const ugl::Matrix3& matrix)
