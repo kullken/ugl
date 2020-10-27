@@ -128,6 +128,18 @@ Pose operator*(Pose lhs, const Pose& rhs)
     return lhs *= rhs;
 }
 
+inline
+Pose exp(const Vector<6>& u)
+{
+    return Pose::exp(u);
+}
+
+inline
+Vector<6> log(const Pose& T)
+{
+    return Pose::log(T);
+}
+
 // An alias to make math nerds happy.
 using SE_3 = Pose;
 

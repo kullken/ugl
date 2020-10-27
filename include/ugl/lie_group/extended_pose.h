@@ -134,6 +134,18 @@ ExtendedPose operator*(ExtendedPose lhs, const ExtendedPose& rhs)
     return lhs *= rhs;
 }
 
+inline
+ExtendedPose exp(const Vector<9>& u)
+{
+    return ExtendedPose::exp(u);
+}
+
+inline
+Vector<9> log(const ExtendedPose& T)
+{
+    return ExtendedPose::log(T);
+}
+
 // An alias to make math nerds happy.
 using SE2_3 = ExtendedPose;
 

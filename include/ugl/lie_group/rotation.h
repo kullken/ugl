@@ -110,6 +110,18 @@ ugl::Vector3 operator*(const Rotation& lhs, const ugl::Vector3& rhs)
     return lhs.matrix() * rhs;
 }
 
+inline
+Rotation exp(const ugl::Vector3& w)
+{
+    return Rotation::exp(w);
+}
+
+inline
+ugl::Vector3 log(const Rotation& R)
+{
+    return Rotation::log(R);
+}
+
 // The 3D rotation group, often denoted SO(3). The group is a matrix Lie group.
 using SO3 = Rotation;
 
