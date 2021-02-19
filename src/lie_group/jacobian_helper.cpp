@@ -30,7 +30,7 @@ Matrix3 jac_Q_block(const Vector3& phi, const Vector3& rho)
 
     const Matrix3 term1 = rho_hat;
     const Matrix3 term2 = phi_hat*rho_hat + rho_hat*phi_hat + phi_hat*rho_hat*phi_hat;
-    const Matrix3 term3 = phi_hat*phi_hat*rho_hat + rho_hat*phi_hat*phi_hat + 3*phi_hat*rho_hat*phi_hat;
+    const Matrix3 term3 = phi_hat*phi_hat*rho_hat + rho_hat*phi_hat*phi_hat - 3*phi_hat*rho_hat*phi_hat;
     const Matrix3 term4 = phi_hat*phi_hat*rho_hat*phi_hat + phi_hat*rho_hat*phi_hat*phi_hat;
 
     return scalar1*term1 + scalar2*term2 + scalar3*term3 + scalar4*term4;
