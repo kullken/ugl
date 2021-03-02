@@ -64,6 +64,7 @@ add_library(ugl::lie_group ALIAS lie_group)
 
 target_sources(lie_group
   PRIVATE
+    src/lie_group/common.cpp
     src/lie_group/euclidean.cpp
     src/lie_group/rotation.cpp
     src/lie_group/rotation2d.cpp

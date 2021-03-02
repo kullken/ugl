@@ -5,6 +5,7 @@
 #include "ugl/math/matrix.h"
 #include "ugl/math/quaternion.h"
 
+#include "ugl/lie_group/common.h"
 #include "ugl/lie_group/rotation.h"
 
 namespace ugl::lie
@@ -139,18 +140,6 @@ inline
 ExtendedPose operator*(ExtendedPose lhs, const ExtendedPose& rhs)
 {
     return lhs *= rhs;
-}
-
-inline
-ExtendedPose exp(const Vector<9>& u)
-{
-    return ExtendedPose::exp(u);
-}
-
-inline
-Vector<9> log(const ExtendedPose& T)
-{
-    return ExtendedPose::log(T);
 }
 
 // An alias to make math nerds happy.

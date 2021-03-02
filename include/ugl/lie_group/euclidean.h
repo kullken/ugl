@@ -4,6 +4,8 @@
 #include "ugl/math/vector.h"
 #include "ugl/math/matrix.h"
 
+#include "ugl/lie_group/common.h"
+
 namespace ugl::lie
 {
 
@@ -97,18 +99,6 @@ template<int dim>
 Euclidean<dim> operator*(Euclidean<dim> lhs, const Euclidean<dim>& rhs)
 {
     return lhs *= rhs;
-}
-
-template<int dim>
-Euclidean<dim> exp(const typename Euclidean<dim>::VectorType& w)
-{
-    return Euclidean<dim>::exp(w);
-}
-
-template<int dim>
-typename Euclidean<dim>::VectorType log(const Euclidean<dim>& R)
-{
-    return Euclidean<dim>::log(R);
 }
 
 } // namespace ugl::lie
