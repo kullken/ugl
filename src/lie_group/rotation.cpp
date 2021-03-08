@@ -13,11 +13,10 @@ Rotation Rotation::exp(const ugl::Vector3& w)
     constexpr double kTolerance = 1e-10;
     const double theta = w.norm();
     if (theta < kTolerance) {
-        return Rotation::Identity();
+        return Rotation{ugl::Matrix3::Identity() + hat(w)};
     }
     const so3 S = hat(w);
-    const Rotation R{ugl::Matrix3::Identity() + std::sin(theta)/theta * S + ((1-cos(theta))/(theta*theta))*S*S};
-    return R;
+    return Rotation{ugl::Matrix3::Identity() + std::sin(theta)/theta * S + ((1-cos(theta))/(theta*theta)) * S*S};
 }
 
 ugl::Vector3 Rotation::log(const Rotation& R)

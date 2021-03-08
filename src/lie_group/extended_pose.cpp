@@ -14,13 +14,6 @@ ExtendedPose ExtendedPose::exp(const Vector<9>& u)
     const Vector3& phi = u.segment<3>(0);
     const Vector3& nu  = u.segment<3>(3);
     const Vector3& rho = u.segment<3>(6);
-
-    constexpr double kTolerance = 1e-10;
-    const double phi_norm = phi.norm();
-    if (phi_norm < kTolerance) {
-        return ExtendedPose{SO3::Identity(), nu, rho};
-    }
-
     const Matrix3 J = SO3::left_jacobian(phi);
     return ExtendedPose{SO3::exp(phi), J * nu, J * rho};
 }
@@ -30,17 +23,6 @@ Vector<9> ExtendedPose::log(const ExtendedPose& T)
     const Vector3 phi = SO3::log(T.R_);
     const Vector3& v = T.vel_;
     const Vector3& p = T.pos_;
-
-    constexpr double kTolerance = 1e-10;
-    const double phi_norm = phi.norm();
-    // TODO: Pre-allocate result variable since it is used in both branches?
-    if (phi_norm < kTolerance)
-    {
-        Vector<9> result;
-        result << phi, v, p;
-        return result;
-    }
-
     const Matrix3 Jinv = SO3::left_jacobian_inv(phi);
     Vector<9> result;
     result << phi, Jinv * v, Jinv * p;

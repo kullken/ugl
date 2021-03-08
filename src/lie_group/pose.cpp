@@ -18,13 +18,6 @@ Pose Pose::exp(const Vector<6>& u)
 {
     const Vector3& phi = u.segment<3>(0);
     const Vector3& rho = u.segment<3>(3);
-
-    constexpr double kTolerance = 1e-10;
-    const double phi_norm = phi.norm();
-    if (phi_norm < kTolerance) {
-        return Pose{SO3::Identity(), rho};
-    }
-
     const Matrix3 J = SO3::left_jacobian(phi);
     return Pose{SO3::exp(phi), J * rho};
 }
@@ -33,17 +26,6 @@ Vector<6> Pose::log(const Pose& T)
 {
     const Vector3 phi = SO3::log(T.R_);
     const Vector3& p = T.pos_;
-
-    constexpr double kTolerance = 1e-10;
-    const double phi_norm = phi.norm();
-    // TODO: Pre-allocate result variable since it is used in both branches?
-    if (phi_norm < kTolerance)
-    {
-        Vector<6> result;
-        result << phi, p;
-        return result;
-    }
-
     const Matrix3 Jinv = SO3::left_jacobian_inv(phi);
     Vector<6> result;
     result << phi, Jinv * p;
