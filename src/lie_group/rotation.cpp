@@ -37,10 +37,11 @@ ugl::Vector3 Rotation::log(const Rotation& R)
             return M_PI / std::sqrt(2.0 * (R00 + 1.0)) * (R.matrix_.col(0) + ugl::Vector3::UnitX());
         }
     }
-    const double theta = std::acos(0.5 * trace - 0.5);
-    if (theta < kTolerance) {
+    // Trace(R) close to 3.0 implies theta close to 0.0.
+    if (3.0 - trace < kTolerance) {
         return vee(R.matrix_ - ugl::Matrix3::Identity());
     }
+    const double theta = std::acos(0.5 * trace - 0.5);
     return 0.5 * theta / std::sin(theta) * vee(R.matrix_ - R.matrix_.transpose());
 }
 
