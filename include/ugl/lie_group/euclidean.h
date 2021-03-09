@@ -89,6 +89,16 @@ public:
         return ugl::Matrix<dim,dim>::Identity();
     }
 
+    friend bool operator==(const Euclidean& lhs, const Euclidean& rhs)
+    {
+        return lhs.vector_ == rhs.vector_;
+    }
+
+    friend bool operator!=(const Euclidean& lhs, const Euclidean& rhs)
+    {
+        return lhs.vector_ != rhs.vector_;
+    }
+
 private:
     ugl::Vector<dim> vector_ = ugl::Vector<dim>::Zero();
 };

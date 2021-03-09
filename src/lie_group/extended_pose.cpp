@@ -109,4 +109,14 @@ Matrix<9,9> ExtendedPose::right_jacobian_inv(const Vector<9>& tau)
     return left_jacobian_inv(-tau);
 }
 
+bool operator==(const ExtendedPose& lhs, const ExtendedPose& rhs)
+{
+    return lhs.R_ == rhs.R_ && lhs.vel_ == rhs.vel_ && lhs.pos_ == rhs.pos_;
+}
+
+bool operator!=(const ExtendedPose& lhs, const ExtendedPose& rhs)
+{
+    return lhs.R_ != rhs.R_ || lhs.vel_ != rhs.vel_ || lhs.pos_ != rhs.pos_;
+}
+
 } // namespace ugl::lie

@@ -92,4 +92,14 @@ ugl::Matrix3 Rotation::right_jacobian_inv(const ugl::Vector3& phi)
     return left_jacobian_inv(-phi);
 }
 
+bool operator==(const Rotation& lhs, const Rotation& rhs)
+{
+    return lhs.matrix_ == rhs.matrix_;
+}
+
+bool operator!=(const Rotation& lhs, const Rotation& rhs)
+{
+    return lhs.matrix_ != rhs.matrix_;
+}
+
 } // namespace ugl::lie

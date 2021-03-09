@@ -123,6 +123,9 @@ public:
     /// @return The inverse right-Jacobian matrix
     static Matrix<6,6> right_jacobian_inv(const Vector<6>& tau);
 
+    friend bool operator==(const Pose& lhs, const Pose& rhs);
+    friend bool operator!=(const Pose& lhs, const Pose& rhs);
+
 private:
     // Rotation
     Rotation R_ = Rotation::Identity();

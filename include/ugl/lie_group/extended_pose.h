@@ -127,6 +127,9 @@ public:
     /// @return The inverse right-Jacobian matrix
     static Matrix<9,9> right_jacobian_inv(const Vector<9>& tau);
 
+    friend bool operator==(const ExtendedPose& lhs, const ExtendedPose& rhs);
+    friend bool operator!=(const ExtendedPose& lhs, const ExtendedPose& rhs);
+
 private:
     // Rotation
     Rotation R_ = Rotation::Identity();

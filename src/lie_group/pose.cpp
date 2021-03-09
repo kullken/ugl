@@ -100,4 +100,14 @@ Matrix<6,6> Pose::right_jacobian_inv(const Vector<6>& tau)
     return left_jacobian_inv(-tau);
 }
 
+bool operator==(const Pose& lhs, const Pose& rhs)
+{
+    return lhs.R_ == rhs.R_ && lhs.pos_ == rhs.pos_;
+}
+
+bool operator!=(const Pose& lhs, const Pose& rhs)
+{
+    return lhs.R_ != rhs.R_ || lhs.pos_ != rhs.pos_;
+}
+
 } // namespace ugl::lie

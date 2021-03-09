@@ -102,6 +102,9 @@ public:
     /// @return The inverse right-Jacobian matrix
     static ugl::Matrix3 right_jacobian_inv(const ugl::Vector3& phi);
 
+    friend bool operator==(const Rotation& lhs, const Rotation& rhs);
+    friend bool operator!=(const Rotation& lhs, const Rotation& rhs);
+
 private:
     ugl::Matrix3 matrix_ = ugl::Matrix3::Identity();
 };
