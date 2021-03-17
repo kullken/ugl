@@ -14,6 +14,11 @@ Vector3 Pose::transform(const Vector3& vec) const
     return R_*vec + pos_;
 }
 
+Vector3 Pose::rotate(const Vector3& vec) const
+{
+    return R_*vec;
+}
+
 Pose Pose::exp(const Vector<6>& u)
 {
     const Vector3& phi = u.segment<3>(0);
