@@ -56,14 +56,14 @@ ugl::Vector3 CircleArc::vel(double t) const
 {
     const double ang_vel = m_angle / m_duration;
     const double angle = theta(t);
-    return m_transform.rotation() * ugl::Vector3{-std::sin(angle), std::cos(angle), 0.0} * ang_vel * m_radius;
+    return m_transform.rotate(ugl::Vector3{-std::sin(angle), std::cos(angle), 0.0} * ang_vel * m_radius);
 }
 
 ugl::Vector3 CircleArc::acc(double t) const
 {
     const double ang_vel = m_angle / m_duration;
     const double angle = theta(t);
-    return m_transform.rotation() * ugl::Vector3{-std::cos(angle), -std::sin(angle), 0.0} * ang_vel * ang_vel * m_radius;
+    return m_transform.rotate(ugl::Vector3{-std::cos(angle), -std::sin(angle), 0.0} * ang_vel * ang_vel * m_radius);
 }
 
 double CircleArc::theta(double t) const

@@ -48,13 +48,13 @@ ugl::Vector3 Helix::pos(double t) const
 ugl::Vector3 Helix::vel(double t) const
 {
     const ugl::Vector3 vel = m_circle_arc.vel(t) + ugl::Vector3::UnitZ() * m_z_velocity;
-    return m_transform.rotation() * vel;
+    return m_transform.rotate(vel);
 }
 
 ugl::Vector3 Helix::acc(double t) const
 {
     const ugl::Vector3 acc = m_circle_arc.acc(t);
-    return m_transform.rotation() * acc;
+    return m_transform.rotate(acc);
 }
 
 } // namespace ugl::trajectory
