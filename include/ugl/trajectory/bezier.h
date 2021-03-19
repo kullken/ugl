@@ -106,13 +106,13 @@ private:
 };
 
 template<>
-inline ugl::Vector3 Bezier<0>::vel([[maybe_unused]] double t) const { return ugl::Vector3::Zero(); }
+inline ugl::Vector3 Bezier<0>::vel(double /*t*/) const { return ugl::Vector3::Zero(); }
 
 template<>
-inline ugl::Vector3 Bezier<0>::acc([[maybe_unused]] double t) const { return ugl::Vector3::Zero(); }
+inline ugl::Vector3 Bezier<0>::acc(double /*t*/) const { return ugl::Vector3::Zero(); }
 
 template<>
-inline ugl::Vector3 Bezier<1>::acc([[maybe_unused]] double t) const { return ugl::Vector3::Zero(); }
+inline ugl::Vector3 Bezier<1>::acc(double /*t*/) const { return ugl::Vector3::Zero(); }
 
 /// Split Bézier-curve into two new curves at time t.
 template<int degree>
@@ -120,8 +120,8 @@ std::pair<Bezier<degree>, Bezier<degree>> split(Bezier<degree> bezier, double t)
 
 /// Creates a Bézier curve from a duration and position, velocity and acceleration at start and end.
 Bezier<5> createPenticBezier(double duration,
-        ugl::Vector3 pos0, ugl::Vector3 vel0, ugl::Vector3 acc0,
-        ugl::Vector3 pos1, ugl::Vector3 vel1, ugl::Vector3 acc1);
+        const ugl::Vector3& pos0, const ugl::Vector3& vel0, const ugl::Vector3& acc0,
+        const ugl::Vector3& pos1, const ugl::Vector3& vel1, const ugl::Vector3& acc1);
 
 } // namespace ugl::trajectory
 
