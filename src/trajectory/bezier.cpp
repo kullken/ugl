@@ -5,7 +5,9 @@
 namespace ugl::trajectory
 {
 
-Bezier<5> createPenticBezier(double duration, ugl::Vector3 pos0, ugl::Vector3 vel0, ugl::Vector3 acc0, ugl::Vector3 pos1, ugl::Vector3 vel1, ugl::Vector3 acc1)
+Bezier<5> createPenticBezier(double duration, 
+        const ugl::Vector3& pos0, const ugl::Vector3& vel0, const ugl::Vector3& acc0,
+        const ugl::Vector3& pos1, const ugl::Vector3& vel1, const ugl::Vector3& acc1)
 {
     const ugl::Vector3 p0 = pos0;
     const ugl::Vector3 p1 = duration/5 * vel0 + p0;
